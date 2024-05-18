@@ -1,0 +1,18 @@
+# Work alias for laradock
+alias ld='cd ~/work/laradock'
+alias lup='ld && docker-compose up -d nginx mariadb redis workspace mailhog --force-recreate'
+alias lssh='ld && docker-compose exec --user=laradock workspace-80 bash'
+alias lssh82='ld && docker-compose exec --user=laradock workspace bash'
+alias ldown='ld && docker-compose down'
+alias grafanassh='cd ~/sshkeys && ssh -i frankfurt_2 admin@3.127.245.151'
+
+alias reboot='loginctl reboot'
+alias shutdown='loginctl poweroff'
+alias poweroff='loginctl poweroff'
+
+alias wget="wget --hsts-file="$XDG_CACHE_HOME/wget-hsts""
+alias firefox="firefox --profile ${XDG_CONFIG_HOME}/firefox"
+
+alias ls='ls --color=auto'
+alias ll='ls -lAh'
+alias grep='grep --color=auto'

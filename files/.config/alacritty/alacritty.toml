@@ -1,0 +1,10 @@
+import = [
+  "./Gruvbox-Dark.toml"
+]
+
+[font]
+size = 14
+normal = { family = "LektonNerdFontMono", style = "Regular" }
+bold = { family = "LektonNerdFontMono", style = "Bold" }
+italic = { family = "LektonNerdFontMono", style = "Italic" }
+
