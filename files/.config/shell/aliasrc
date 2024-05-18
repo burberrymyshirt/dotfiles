@@ -4,7 +4,6 @@ alias lup='ld && docker-compose up -d nginx mariadb redis workspace mailhog --fo
 alias lssh='ld && docker-compose exec --user=laradock workspace-80 bash'
 alias lssh82='ld && docker-compose exec --user=laradock workspace bash'
 alias ldown='ld && docker-compose down'
-alias grafanassh='cd ~/sshkeys && ssh -i frankfurt_2 admin@3.127.245.151'
 
 alias reboot='loginctl reboot'
 alias shutdown='loginctl poweroff'
