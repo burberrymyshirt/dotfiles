@@ -1,17 +1,20 @@
-# Work alias for laradock
+# Laradock work alias
 alias ld='cd ~/work/laradock'
-alias lup='ld && docker-compose up -d nginx mariadb redis workspace mailhog --force-recreate'
+alias lup='ld && docker-compose up -d --force-recreate nginx mariadb redis workspace mailhog'
 alias lssh='ld && docker-compose exec --user=laradock workspace-80 bash'
 alias lssh82='ld && docker-compose exec --user=laradock workspace bash'
 alias ldown='ld && docker-compose down'
 
+# Makes shutdown work the same across init systems, by using elogind instead
 alias reboot='loginctl reboot'
 alias shutdown='loginctl poweroff'
 alias poweroff='loginctl poweroff'
 
+# XDG Base Directory section
 alias wget="wget --hsts-file="$XDG_CACHE_HOME/wget-hsts""
 alias firefox="firefox --profile ${XDG_CONFIG_HOME}/firefox"
 
+# Color section
 alias ls='ls --color=auto'
 alias ll='ls -lAh'
 alias grep='grep --color=auto'
