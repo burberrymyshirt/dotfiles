@@ -18,3 +18,8 @@ alias firefox="firefox --profile ${XDG_CONFIG_HOME}/firefox"
 alias ls='ls --color=auto'
 alias ll='ls -lAh'
 alias grep='grep --color=auto'
+
+# Quality of life alias
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'

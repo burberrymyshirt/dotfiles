@@ -1,3 +1,8 @@
+###
+### I edited lightdms wrapper script for $XDG_CONFIG_HOME/shell/profile to work.
+### Would not reccomend the same, even though it works.
+###
+
 nitrogen --restore &
 #picom &
 nm-applet &
@@ -7,7 +12,7 @@ xset dpms 0 0 0 && xset s noblank && xset s off && xset r rate 300 25
 
 # temp solution to remove "dwm 6.4" from status bar. 
 xsetroot -name " "
-sleep 3
+sleep 1.5
 dwmblocks &
 
 

@@ -1,5 +1,17 @@
-# Making cargo follow XDG Base Dir
-. "$XDG_DATA_HOME/cargo/env"
+###
+### I edited lightdms wrapper script for $XDG_CONFIG_HOME/shell/profile to work.
+### Would not reccomend the same, even though it works.
+###
+### Also XDG dirs have to be set before this is loaded, or nothing works. 
+### /etc/security/pam_env.conf works fine for this on single user machines.
+###
+
+# Making cargo and rustup follow XDG Base Dir
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+. "$CARGO_HOME/env"
+# This shouldn't have to be here, but something somewhere is broken
+export PATH=$PATH:/home/larse/.local/share/cargo/bin
 
 export EDITOR=nvim
 export VISUAL=nvim
@@ -11,27 +23,30 @@ export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
 export USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
 export ALTUSERXSESSION="$XDG_CACHE_HOME/X11/Xsession"
 export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
-
-# Fixing more XDG Base dir stuff, not sure if it even works lol
+#export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority # This line breaks lightdm, so use with care
+# Fixing more XDG Base dir stuff
 export NVM_DIR="$XDG_DATA_HOME"/nvm
+export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export HISTFILE="$XDG_STATE_HOME"/bash/history
-export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+### TODO: Fix this Java line at some point, because programs were complaining ###
 # export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export STACK_ROOT="$XDG_DATA_HOME"/stack
 export GHCUP_USE_XDG_DIRS=true
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export DVDCSS_CACHE="$XDG_DATA_HOME"/dvdcss
 export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export PYTHON_HISTORY=$XDG_STATE_HOME/python/history
+export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
+export PYTHONUSERBASE=$XDG_DATA_HOME/python
+# Some misc stuff as this file is beyond messy
 export QT_QPA_PLATFORMTHEME="gtk2"        # Have QT use gtk2 theme.
 export MOZ_USE_XINPUT2=1                  # Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D" # May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1      # Fix for Java applications in dwm
-export PATH=$PATH:/home/larse/.local/share/cargo/bin
 export GOPATH="$XDG_DATA_HOME"/go
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 
