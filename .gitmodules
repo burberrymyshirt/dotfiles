@@ -1,12 +1,12 @@
 [submodule "files/.config/nvim"]
-	path = files/.config/nvim
+	path = files/dot-config/nvim
 	url = https://github.com/burberrymyshirt/kickstart-modular.nvim.git
 [submodule "files/.config/suckless/dwmblocks"]
-	path = files/.config/suckless/dwmblocks
+	path = files/dot-config/suckless/dwmblocks
 	url = https://github.com/burberrymyshirt/dwmblocks.git
 [submodule "files/.config/suckless/dmenu"]
-	path = files/.config/suckless/dmenu
+	path = files/dot-config/suckless/dmenu
 	url = https://github.com/burberrymyshirt/dmenu-build
 [submodule "files/.config/suckless/dwm"]
-	path = files/.config/suckless/dwm
+	path = files/dot-config/suckless/dwm
 	url = https://github.com/burberrymyshirt/dwm-build
