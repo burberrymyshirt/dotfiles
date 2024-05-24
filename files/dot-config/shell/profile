@@ -9,8 +9,8 @@
 # Making cargo and rustup follow XDG Base Dir
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
-. "$CARGO_HOME/env"
-# This shouldn't have to be here, but something somewhere is broken
+#. "$CARGO_HOME/env"
+# This shouldn't have to be here, but something somewhere is broken NOTE: It is the env script above
 export PATH=$PATH:/home/larse/.local/share/cargo/bin
 
 export EDITOR=nvim
