@@ -14,3 +14,5 @@ For tmux, remember to run this command to manually clone the package manager. On
 ``` [shell]
 git clone https://github.com/tmux-plugins/tpm ${XDG_DATA_HOME:-$HOME/.local/share}/tmux/plugins/tpm
 ```
+
+And run `<C-Space>I` inside tmux to install all plugins.
