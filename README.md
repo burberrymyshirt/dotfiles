@@ -7,6 +7,19 @@ cd ${HOME}/.dotfiles
 stow --dotfiles -t ${HOME} files
 ```
 
+## Dependencies
+
+### Bashrc
+
+``` [shell]
+sudo pacman -S zoxide keychain
+```
+
+### Neovim
+
+Open neovim and run command `:checkhealth`.
+
+
 ## Tmux
 
 For tmux, remember to run this command to manually clone the package manager. Only first time setup:
