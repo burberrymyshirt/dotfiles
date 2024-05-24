@@ -20,7 +20,7 @@ sudo pacman -S zoxide keychain
 Open neovim and run command `:checkhealth`.
 
 
-## Tmux
+### Tmux
 
 For tmux, remember to run this command to manually clone the package manager. Only first time setup:
 
@@ -28,4 +28,4 @@ For tmux, remember to run this command to manually clone the package manager. On
 git clone https://github.com/tmux-plugins/tpm ${XDG_DATA_HOME:-$HOME/.local/share}/tmux/plugins/tpm
 ```
 
-And run `<C-Space>I` inside tmux to install all plugins.
+Then run `<C-Space>I` inside tmux to install all plugins.
