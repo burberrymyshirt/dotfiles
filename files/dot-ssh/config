@@ -4,3 +4,4 @@ Host github.com
   PreferredAuthentications publickey
   IdentityFile ~/.ssh/git/github-larse
   IdentitiesOnly yes
+  AddKeysToAgent yes
