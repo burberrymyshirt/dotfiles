@@ -53,6 +53,7 @@ export NVM_DIR="$HOME/.nvm"
 
 
 
+eval $(keychain --eval -q --noask git/github-larse)
 eval " $(zoxide init bash --cmd cd)"
 
 . ${XDG_CONFIG_HOME}/shell/profile
