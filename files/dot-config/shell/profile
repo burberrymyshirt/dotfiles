@@ -15,7 +15,7 @@ export PATH=$PATH:/home/larse/.local/share/cargo/bin
 
 export EDITOR=nvim
 export VISUAL=nvim
-export TERM=alacritty
+#export TERM=alacritty
 export BROWSER=firefox
 
 # Sets xorg directories
