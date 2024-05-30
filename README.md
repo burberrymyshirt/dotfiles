@@ -7,6 +7,20 @@ cd ${HOME}/.dotfiles
 stow --dotfiles -t ${HOME} files
 ```
 
+## XDG Base Directory
+
+Remember to set XDG variables, otherwise some configurations might not work properly.
+I prefer doing it in `/etc/security/pam_env.conf`
+
+Append the following to that file: 
+
+``` [shell]
+XDG_CACHE_HOME   DEFAULT=@{HOME}/.cache
+XDG_CONFIG_HOME  DEFAULT=@{HOME}/.config
+XDG_DATA_HOME    DEFAULT=@{HOME}/.local/share
+XDG_STATE_HOME   DEFAULT=@{HOME}/.local/state
+```
+
 ## Dependencies
 
 ### Bashrc
