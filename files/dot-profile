@@ -1,2 +1,3 @@
 ### In case things are configured wrong and programs call ~/.profile instead
+### The only reason XDG_CONFIG_HOME is not used, is because it is likely to not be set if it decides to call this file, i think.
 . "$HOME/.config/shell/profile"
