@@ -13,6 +13,7 @@ alias ldown='ld && docker-compose down'
 # XDG Base Directory section
 alias wget="wget --hsts-file="$XDG_CACHE_HOME/wget-hsts""
 alias firefox="firefox --profile ${XDG_CONFIG_HOME}/firefox"
+alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 
 # Color section
 alias ls='ls --color=auto'
