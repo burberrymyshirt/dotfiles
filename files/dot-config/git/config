@@ -1,3 +1,5 @@
 [user]
 	name = Magnus Larsen
 	email = magnushlarsen01@protonmail.com
+[init]
+	defaultBranch = master
