@@ -23,6 +23,10 @@ XDG_STATE_HOME   DEFAULT=@{HOME}/.local/state
 
 ## Dependencies
 
+### Font
+
+Everything uses the Lekton Nerd Font Mono from nerdfonts.com
+
 ### Bashrc
 
 ``` [shell]
