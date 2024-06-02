@@ -21,6 +21,10 @@ XDG_DATA_HOME    DEFAULT=@{HOME}/.local/share
 XDG_STATE_HOME   DEFAULT=@{HOME}/.local/state
 ```
 
+## Suckless
+
+Choose the correct branches for the suckless submodules, as they are sometimes wrong as a consequence of my sometimes sporadic changes.
+
 ## Dependencies
 
 ### Font
