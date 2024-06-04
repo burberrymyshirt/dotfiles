@@ -1,7 +1,10 @@
 [user]
-	name = Magnus Larsen
 	email = magnushlarsen01@protonmail.com
-[init]
-	defaultBranch = master
+	name = Magnus Larsen
+	signingkey = /home/larse/.ssh/git/github-larse.pub
 [pull]
 	rebase = false
+[gpg]
+	format = ssh
+[init]
+	defaultBranch = master
