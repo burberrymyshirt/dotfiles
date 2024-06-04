@@ -1,7 +1,7 @@
 [user]
 	email = magnushlarsen01@protonmail.com
 	name = Magnus Larsen
-	signingkey = /home/larse/.ssh/git/github-larse.pub
+	signingkey = $HOME/.ssh/git/github-larse.pub
 [pull]
 	rebase = false
 [gpg]
