@@ -1,8 +1,8 @@
 [font]
 size = 14
-normal = { family = "LektonNerdFontMono", style = "Regular" }
-bold = { family = "LektonNerdFontMono", style = "Bold" }
-italic = { family = "LektonNerdFontMono", style = "Italic" }
+normal = { family = "MartianMonoNerdFontMono", style = "Regular" }
+bold = { family = "MartianMonoNerdFontMono", style = "Bold" }
+italic = { family = "MartianMonoNerdFontMono", style = "Italic" }
 
 [colors.primary]
 background = "#282828"
