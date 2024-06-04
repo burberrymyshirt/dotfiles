@@ -3,3 +3,4 @@ files/dot-config/tmux/plugins*
 files/dot-ssh/
 !files/dot-ssh/config
 
+files/dot-config/btop/btop.log
