@@ -6,8 +6,12 @@
 [[ $- != *i* ]] && return
 
 
+# ps1_parse_git_branch() {
+#      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | cut -c 1-20
+# }
+
 ps1_parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | cut -c 1-20
+    git symbolic-ref --short HEAD 2>/dev/null | cut -c 1-20
 }
 
 PS1="\[\e[1;31m\][\[\e[1;33m\]\u\[\e[1;32m\]@\[\e[1;34m\]\h \[\e[1;35m\]\w\[\e[1;31m\]]\[\e[91m\]\$(ps1_parse_git_branch)\[\e[00m\] $ "
