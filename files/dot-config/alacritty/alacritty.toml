@@ -1,5 +1,5 @@
 [font]
-size = 14
+size = 12
 normal = { family = "MartianMonoNerdFontMono", style = "Regular" }
 bold = { family = "MartianMonoNerdFontMono", style = "Bold" }
 italic = { family = "MartianMonoNerdFontMono", style = "Italic" }
