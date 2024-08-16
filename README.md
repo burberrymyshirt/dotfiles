@@ -29,9 +29,16 @@ Choose the correct branches for the suckless submodules, as they are sometimes w
 
 ### Font
 
-Everything uses the Lekton Nerd Font Mono from nerdfonts.com
+Everything uses a Nerd Font from nerdfonts.com
+To install them all:
+
+``` [shell]
+sudo pacman -S nerd-fonts
+```
 
 ### Bashrc
+
+These are the programs i use, which are initialized in the bashrc, and will print errors to stdout if not present:
 
 ``` [shell]
 sudo pacman -S zoxide keychain
@@ -39,8 +46,7 @@ sudo pacman -S zoxide keychain
 
 ### Neovim
 
-Open neovim and run command `:checkhealth`.
-
+Open neovim and run the command `:checkhealth`. Then fix all the relevant errors.
 
 ### Tmux
 
