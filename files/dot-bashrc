@@ -53,7 +53,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
+# Makes asdf version manager work
+. /opt/asdf-vm/asdf.sh
 
 eval $(keychain --absolute --dir "$XDG_RUNTIME_DIR"/keychain --eval -q --noask git/github-larse)
 eval " $(zoxide init bash --cmd cd)"
