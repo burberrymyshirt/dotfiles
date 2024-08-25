@@ -72,3 +72,7 @@ export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
 export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
 
 export PATH=$PATH:/home/larse/.local/share/go/bin/
+
+# Makes asdf version manager work
+. /opt/asdf-vm/asdf.sh
+
