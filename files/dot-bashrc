@@ -58,3 +58,6 @@ eval " $(zoxide init bash --cmd cd)"
 
 . ${XDG_CONFIG_HOME}/shell/profile
 . ${XDG_CONFIG_HOME}/shell/aliasrc
+
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/completions/asdf.bash"
