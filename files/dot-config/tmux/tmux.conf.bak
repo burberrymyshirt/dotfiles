@@ -2,9 +2,9 @@
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'christoomey/vim-tmux-navigator'
-set -g @plugin 'egel/tmux-gruvbox'
-
-set -g @tmux-gruvbox 'dark' # or 'light'
+set -g @plugin 'thewtex/tmux-mem-cpu-load'
+#set -g @plugin 'egel/tmux-gruvbox'
+#set -g @tmux-gruvbox 'dark' # or 'light'
 
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'
@@ -14,8 +14,8 @@ set -g @tmux-gruvbox 'dark' # or 'light'
 
 # set leader to something sane
 unbind C-b
-unbind C-Space
 set-option -g prefix C-Space
+unbind C-Space
 bind C-Space send-prefix
 
 # bind <leader>r to source config
@@ -49,6 +49,26 @@ set-option -g renumber-windows on
 set -g default-terminal "tmux-256color" 
 set-option -a terminal-features 'alacritty:RGB'
 
+# Configure the bottom bar, as most plugins I've found for this kinda suck.
+#set-option -g status-style bg=green
+set-option -g status on
+set-option -g status-interval 1
+set-option -g status-justify centre
+set-option -g status-keys vi
+set-option -g status-position bottom
+set-option -g status-style fg=colour136,bg=colour235
+set-option -g status-left-length 20
+set-option -g status-left-style default
+set-option -g status-left "#[fg=green]#H #[fg=black]• #[fg=green,bright]#(uname -r)#[default]"
+set-option -g status-right-length 140
+set-option -g status-right-style default
+set-option -g status-right "#[fg=green,bg=default,bright]#($XDG_CONFIG_HOME/tmux/plugins/tmux-mem-cpu-load/tmux-mem-cpu-load) "
+set-option -ag status-right "#[fg=red,dim,bg=default]#(uptime | cut -f 4-5 -d ' ' | cut -f 1 -d ',') "
+set-option -ag status-right " #[fg=white,bg=default]%a %H:%M:%S %p#[default] #[fg=blue]%d-%m-%Y"
+set-window-option -g window-status-style fg=colour244
+set-window-option -g window-status-style bg=default
+set-window-option -g window-status-current-style fg=colour166
+set-window-option -g window-status-current-style bg=default
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.local/share/tmux/plugins/tpm/tpm'
