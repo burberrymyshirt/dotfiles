@@ -24,19 +24,16 @@ SESSIONS_SCRIPTS_DIR="$HOME/.local/bin/tmux-sessions"
 setup_base_session() {
     tmux new-session -d -s "$SESSION_NAME"
 
-    # Create the main editor window
-    tmux rename-window -t "$SESSION_NAME:1" 'editor'
-    tmux send-keys -t "$SESSION_NAME:1" 'nvim .' C-m
+    tmux rename-window -t "$SESSION_NAME:1" 'bash'
+    tmux send-keys -t "$SESSION_NAME:1" 'lup' C-m
 
-    # Create a server window
-    tmux new-window -t "$SESSION_NAME:2" -n 'server'
-    tmux send-keys -t "$SESSION_NAME:2" 'echo "Start your server here!"' C-m
+    tmux new-window -t "$SESSION_NAME:2" -n 'lazygit'
+    tmux send-keys -t "$SESSION_NAME:2" 'ld && lazygit' C-m
 
-    # Create a logs window
-    tmux new-window -t "$SESSION_NAME:3" -n 'logs'
-    tmux send-keys -t "$SESSION_NAME:3" 'tail -f /var/log/syslog' C-m
+    tmux new-window -t "$SESSION_NAME:3" -n 'nvim'
+    tmux send-keys -t "$SESSION_NAME:3" 'nvim .' C-m
 
-    # Select the editor window by default
+    # Select the first window by default
     tmux select-window -t "$SESSION_NAME:1"
 
     # Attach to the session
@@ -48,21 +45,23 @@ setup_base_session
 
 # Handle project-specific deviations
 case "$PROJECT" in
-    "project1")
-        if [ -f "$SESSIONS_SCRIPTS_DIR/coolrunner-setup.sh" ]; then
-            . "$SESSIONS_SCRIPTS_DIR/coolrunner-setup.sh"
+    "cr")
+        $CR_SCRIPT="coolrunner-setup.sh"
+        if [ -f "$SESSIONS_SCRIPTS_DIR/$CR_SCRIPT" ]; then
+            . "$SESSIONS_SCRIPTS_DIR/$CR_SCRIPT"
             setup_project1
         else
-            echo "Error: $SESSIONS_SCRIPTS_DIR/coolrunner-setup.sh not found."
+            echo "Error: $SESSIONS_SCRIPTS_DIR/$CR_SCRIPT not found."
             exit 1
         fi
         ;;
-    "project2")
-        if [ -f "$SESSIONS_SCRIPTS_DIR/project2-setup.sh" ]; then
-            . "$SESSIONS_SCRIPTS_DIR/project2-setup.sh"
-            setup_project2
+    "simz")
+        $SIMZ_SCRIPT="coolrunner-setup.sh"
+        if [ -f "$SESSIONS_SCRIPTS_DIR/$CR_SCRIPT" ]; then
+            . "$SESSIONS_SCRIPTS_DIR/$CR_SCRIPT"
+            setup_project1
         else
-            echo "Error: $SESSIONS_SCRIPTS_DIR/project2-setup.sh not found."
+            echo "Error: $SESSIONS_SCRIPTS_DIR/$CR_SCRIPT not found."
             exit 1
         fi
         ;;
