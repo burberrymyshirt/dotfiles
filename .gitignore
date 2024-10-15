@@ -4,3 +4,4 @@ files/dot-ssh/
 !files/dot-ssh/config
 
 files/dot-config/btop/btop.log
+files/dot-config/shell/aws_credentials
