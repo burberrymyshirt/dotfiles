@@ -68,6 +68,8 @@ export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship.toml
 export STARSHIP_CACHE="$XDG_CACHE_HOME"/starship 
 export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
 export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export XCURSOR_PATH=${XCURSOR_PATH}:~/.local/share/icons
 
 # Add all directories in `~/.local/bin` to $PATH

@@ -5,6 +5,13 @@ alias lssh='ld && sh bash-80.sh'
 alias lssh82='ld && sh bash-82.sh'
 alias lssh83='ld && sh bash.sh'
 alias ldown='ld && docker-compose down'
+alias coressh='lssh'
+alias externalssh='lssh83'
+alias workspacessh='lssh83'
+alias claimssh='lssh82'
+# alias coressh='lssh'
+# alias coressh='lssh'
+# alias coressh='lssh'
 
 # Makes shutdown work the same across init systems, by using elogind instead
 # alias reboot='loginctl reboot'

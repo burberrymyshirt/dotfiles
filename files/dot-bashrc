@@ -59,5 +59,9 @@ eval " $(zoxide init bash --cmd cd)"
 . ${XDG_CONFIG_HOME}/shell/profile
 . ${XDG_CONFIG_HOME}/shell/aliasrc
 
+if [ -f "${XDG_CONFIG_HOME}/shell/aws_credentials" ]; then
+  . "${XDG_CONFIG_HOME}/shell/aws_credentials"
+fi
+
 . "$HOME/.asdf/asdf.sh"
 . "$HOME/.asdf/completions/asdf.bash"
