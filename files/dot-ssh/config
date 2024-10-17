@@ -5,3 +5,10 @@ Host github.com
   IdentityFile ~/.ssh/git/github-larse
   IdentitiesOnly yes
   AddKeysToAgent yes
+Host mail.hlarse.dk
+  user root
+  Hostname mail.hlarse.dk
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/git/github-larse
+  IdentitiesOnly yes
+  AddKeysToAgent yes
