@@ -80,3 +80,4 @@ export PATH=$PATH:/home/larse/.local/share/go/bin/
 # Makes asdf version manager work
 #. /opt/asdf-vm/asdf.sh
 
+xrdb -merge "${HOME}/.Xresources"

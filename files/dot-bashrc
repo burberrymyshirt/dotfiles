@@ -66,4 +66,3 @@ fi
 . "$HOME/.asdf/asdf.sh"
 . "$HOME/.asdf/completions/asdf.bash"
 
-xrdb "${HOME}/.Xresources"
