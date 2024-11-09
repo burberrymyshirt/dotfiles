@@ -15,5 +15,5 @@ xsetroot -name " "
 # sleep 1.5
 dwmblocks &
 
-
+setxkbmap -option caps:escape
 
