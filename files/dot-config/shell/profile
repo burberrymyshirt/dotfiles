@@ -81,3 +81,6 @@ export PATH=$PATH:/home/larse/.local/share/go/bin/
 #. /opt/asdf-vm/asdf.sh
 
 xrdb -merge "${HOME}/.Xresources"
+
+export PATH="/home/larse/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/larse/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
