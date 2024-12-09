@@ -81,3 +81,4 @@ export PATH=$PATH:/home/larse/.local/share/go/bin/
 #. /opt/asdf-vm/asdf.sh
 
 xrdb -merge "${HOME}/.Xresources"
+
