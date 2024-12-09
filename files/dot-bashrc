@@ -47,7 +47,20 @@ ex ()
   fi
 }
 
+crclone() {
+  local base_url="git@github.com:coolrunner-dk/"
 
+  if [ -z "$1" ]; then
+    echo "Usage: crclone <project>"
+    echo "Error: '<project>' is required"
+    return 1
+  fi
+
+  local repo_url="${base_url}${1}.git"
+
+  echo "Cloning repository: $repo_url"
+  git clone "$repo_url"
+}
 # nvm exports for bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
