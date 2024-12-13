@@ -4,6 +4,9 @@ normal = { family = "MartianMonoNerdFontMono", style = "Regular" }
 bold = { family = "MartianMonoNerdFontMono", style = "Bold" }
 italic = { family = "MartianMonoNerdFontMono", style = "Italic" }
 
+[window]
+dimensions = {columns = 100, lines = 35}
+
 [colors.primary]
 background = "#282828"
 foreground = "#ebdbb2"
