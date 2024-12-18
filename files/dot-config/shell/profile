@@ -71,11 +71,16 @@ export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export XCURSOR_PATH=${XCURSOR_PATH}:~/.local/share/icons
-
+export W3M_DIR="$XDG_STATE_HOME/w3m"
+export PYTHON_HISTORY=$XDG_STATE_HOME/python/history
+export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
+export PYTHONUSERBASE=$XDG_DATA_HOME/python
+export PATH=$PATH:/home/larse/.local/share/go/bin/
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
+export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf
 # Add all directories in `~/.local/bin` to $PATH
 export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
-
-export PATH=$PATH:/home/larse/.local/share/go/bin/
 
 # Makes asdf version manager work
 #. /opt/asdf-vm/asdf.sh
