@@ -76,6 +76,6 @@ if [ -f "${XDG_CONFIG_HOME}/shell/aws_credentials" ]; then
   . "${XDG_CONFIG_HOME}/shell/aws_credentials"
 fi
 
-. "$HOME/.asdf/asdf.sh"
-. "$HOME/.asdf/completions/asdf.bash"
+. "$XDG_CONFIG_HOME/asdf/asdf.sh"
+. "$XDG_CONFIG_HOME/asdf/completions/asdf.bash"
 

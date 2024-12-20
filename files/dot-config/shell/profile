@@ -79,6 +79,7 @@ export PATH=$PATH:/home/larse/.local/share/go/bin/
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc"
 export ASDF_DATA_DIR="${XDG_DATA_HOME}/asdf"
+export ASDF_DIR="${XDG_CONFIG_HOME}/asdf"
 # Add all directories in `~/.local/bin` to $PATH
 export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
 
