@@ -1,7 +1,9 @@
 # Dotfiles
 
+The programs installed below, is a non-exhaustive list of dependencies. Everything might not work out of the box.
+
 ``` [shell]
-sudo pacman -S git stow
+sudo pacman -S --needed git stow nerd-fonts zoxide keychain ripgrep fzf base-devel unzip wget curl neovim shotgun hacksaw xclip
 git clone --recursive git@github.com:burberrymyshirt/dotfiles.git ${HOME}/.dotfiles
 cd ${HOME}/.dotfiles
 stow --dotfiles -t ${HOME} files
