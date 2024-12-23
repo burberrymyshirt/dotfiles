@@ -67,9 +67,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Sets up ssh key manager and zoxide for cd
 eval $(keychain --absolute --dir "$XDG_RUNTIME_DIR"/keychain --eval -q --noask git/github-larse)
 eval " $(zoxide init bash --cmd cd)"
 
+# Sets a lot of my XDG_BASE_DIR vars and other agnostic commands
 . ${XDG_CONFIG_HOME}/shell/profile
 . ${XDG_CONFIG_HOME}/shell/aliasrc
 
@@ -77,6 +79,7 @@ if [ -f "${XDG_CONFIG_HOME}/shell/aws_credentials" ]; then
   . "${XDG_CONFIG_HOME}/shell/aws_credentials"
 fi
 
+# Source asdf
 . "$XDG_CONFIG_HOME/asdf/asdf.sh"
 . "$XDG_CONFIG_HOME/asdf/completions/asdf.bash"
 
