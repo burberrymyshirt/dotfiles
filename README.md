@@ -7,6 +7,12 @@ cd ${HOME}/.dotfiles
 stow --dotfiles -t ${HOME} files
 ```
 
+Also make all scripts included executable:
+
+``` [shell]
+find files/dot-local/bin -type f -exec chmod +x {} \;
+```
+
 ## XDG Base Directory
 
 Remember to set XDG variables, otherwise some configurations might not work properly.
