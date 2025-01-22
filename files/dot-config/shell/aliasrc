@@ -9,7 +9,7 @@ alias coressh='lssh'
 alias externalssh='lssh83'
 alias workspacessh='lssh83'
 alias claimssh='lssh82'
-# alias coressh='lssh'
+alias apissh='lssh'
 # alias coressh='lssh'
 # alias coressh='lssh'
 
