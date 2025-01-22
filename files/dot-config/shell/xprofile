@@ -3,6 +3,7 @@
 ### Would not reccomend the same, even though it works.
 ###
 
+exec -solid "#000000" &
 nitrogen --restore &
 #picom &
 nm-applet &
