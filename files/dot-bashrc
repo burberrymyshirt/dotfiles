@@ -83,3 +83,5 @@ fi
 . "$XDG_CONFIG_HOME/asdf/asdf.sh"
 . "$XDG_CONFIG_HOME/asdf/completions/asdf.bash"
 
+export LANG=en_DK.UTF-8
+export LC_ALL=en_DK.UTF-8
