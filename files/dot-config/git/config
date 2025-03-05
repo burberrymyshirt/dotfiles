@@ -4,6 +4,7 @@
 	signingkey = ~/.ssh/git/github-larse.pub
 [pull]
 	rebase = false
+	ff = only
 [gpg]
 	format = ssh
 [init]
