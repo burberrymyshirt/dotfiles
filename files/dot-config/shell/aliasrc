@@ -37,3 +37,4 @@ alias pison='python3'
 # TODO: make cdir.sh script work with multiple shells. For now just use bash-only alias
 # alias cdir='cdir.sh'
 alias cdir='cd ${_%/*}'
+alias dc='docker compose'
