@@ -1,6 +1,6 @@
 # Dotfiles
 
-The programs installed below, is a non-exhaustive list of dependencies. Everything might not work out of the box.
+The programs installed below, is a non-exhaustive list of dependencies. Everything might not work out of the box. The current roadmap will include every step in an initial setup script.
 
 ``` [shell]
 sudo pacman -S --needed git stow nerd-fonts tmux zoxide keychain ripgrep fzf base-devel unzip wget curl neovim shotgun hacksaw xclip bash-completion
