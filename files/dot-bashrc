@@ -83,5 +83,9 @@ fi
 . "$XDG_CONFIG_HOME/asdf/asdf.sh"
 . "$XDG_CONFIG_HOME/asdf/completions/asdf.bash"
 
+# source bash complete_alias package
+. "/usr/share/bash-complete-alias/complete_alias"
+. "$XDG_CONFIG_HOME/shell/bash_completion"
+
 export LANG=en_DK.UTF-8
 export LC_ALL=en_DK.UTF-8
