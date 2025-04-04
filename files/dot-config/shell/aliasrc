@@ -1,9 +1,9 @@
 # Laradock work alias
 alias ld='cd ~/work/laradock'
 alias lup='ld && docker-compose up -d --force-recreate nginx mariadb redis workspace mailhog && cd -'
-alias lssh='ld && sh bash-80.sh'
-alias lssh82='ld && sh bash-82.sh'
-alias lssh83='ld && sh bash.sh'
+alias lssh='ld && sh bash-80.sh && cd -'
+alias lssh82='ld && sh bash-82.sh && cd -'
+alias lssh83='ld && sh bash.sh && cd -'
 alias ldown='ld && docker-compose down && cd -'
 alias coressh='lssh && cd -'
 alias externalssh='lssh83 && cd -'
