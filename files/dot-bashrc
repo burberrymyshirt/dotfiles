@@ -5,27 +5,21 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+HISTCONTROL=ignoredups:ignorespace
+shopt -s histappend
+HISTSIZE=10000
+HISTFILESIZE=30000
 
-# ps1_parse_git_branch() {
-#      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | cut -c 1-20
-# }
+shopt -s checkwinsize
+
+# case insensitive tab-completion
+bind "set completion-ignore-case on"
 
 ps1_parse_git_branch() {
     git symbolic-ref --short HEAD 2>/dev/null | cut -c 1-20
 }
 
-ps1_trimmed_path() {
-    local dir="$(pwd)"
-    local trimmed_path="$(echo "$dir" | awk -F'/' '{n=split($0,a,"/"); start=(n>5)?n-4:1; for (i=start; i<=n; i++) printf (i==start?"":"%s/"), a[i]; printf "\n"}')"
-    echo "$trimmed_path"
-}
-
-PS1="\[\e[1;31m\][\[\e[1;33m\]\u\[\e[1;32m\]@\[\e[1;34m\]\h \[\e[1;35m\]\$(ps1_trimmed_path)\[\e[1;31m\]]\[\e[91m\]\$(ps1_parse_git_branch)\[\e[00m\] $ "
-# PS1="\[\e[1;31m\][\[\e[1;33m\]\u\[\e[1;32m\]@\[\e[1;34m\]\h \[\e[1;35m\]\w\[\e[1;31m\]]\[\e[91m\]\$(ps1_parse_git_branch)\[\e[00m\] $ "
-#PS1="\[\e[32;1m\]\u:\[\e[34m\]\w \[\e[91m\]\$(ps1_parse_git_branch)\[\e[00m\] $ "
-
-# case insensitive tab-completion
-bind "set completion-ignore-case on"
+PS1="\[\e[1;31m\][\[\e[1;33m\]\u\[\e[1;32m\]@\[\e[1;34m\]\h \[\e[1;35m\]\w\[\e[1;31m\]]\[\e[91m\]\$(ps1_parse_git_branch)\[\e[00m\] $ "
 
 # Script for extracting all kinds of archive files.
 # TODO: Move out of bashrc into an external script, so it can be used across many shells
