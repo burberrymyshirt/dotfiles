@@ -5,3 +5,4 @@ files/dot-ssh/
 
 files/dot-config/btop/btop.log
 files/dot-config/shell/aws_credentials
+files/dot-local/bin/work/
