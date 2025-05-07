@@ -94,6 +94,14 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Moving around:
 #
+# Focus between screens
+    bindsym $mod+comma focus output left
+    bindsym $mod+period focus output right
+
+# Move windows between screens
+    bindsym $mod+Shift+comma move to output left
+    bindsym $mod+Shift+period move to output right
+
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -226,7 +234,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command sh /home/larse/.config/sway/statusbar.sh
 
     colors {
         statusline #ffffff
