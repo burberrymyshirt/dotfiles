@@ -84,6 +84,7 @@ export ASDF_DIR="${XDG_CONFIG_HOME}/asdf"
 # export PATH="$PATH:$(find -L ~/.local/bin -type d | paste -sd ':' -)"
 export PATH="$PATH:$(find -L $HOME/.local/bin -type d | paste -sd ':' -)"
 
+export CR_WORK_DIR="$HOME/work"
 # Makes asdf version manager work
 #. /opt/asdf-vm/asdf.sh
 
