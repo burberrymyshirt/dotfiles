@@ -12,18 +12,18 @@
   <property name="misc-borders-default" type="bool" value="true"/>
   <property name="misc-toolbar-default" type="bool" value="false"/>
   <property name="misc-default-geometry" type="string" value="120x36"/>
-  <property name="color-foreground" type="string" value="#f2f2e5e5bcbc"/>
-  <property name="color-background" type="string" value="#323230302f2f"/>
+  <property name="color-foreground" type="string" value="#a8a899998484"/>
+  <property name="color-background" type="string" value="#282828282828"/>
   <property name="color-background-vary" type="bool" value="false"/>
   <property name="color-cursor-foreground" type="string" value=""/>
-  <property name="color-cursor" type="string" value="#d65bc4cd8ca1"/>
+  <property name="color-cursor" type="string" value="#a8a899998484"/>
   <property name="color-cursor-use-default" type="bool" value="true"/>
   <property name="color-selection" type="string" value=""/>
   <property name="color-selection-background" type="string" value=""/>
   <property name="color-selection-use-default" type="bool" value="true"/>
   <property name="color-bold" type="string" value=""/>
   <property name="color-bold-use-default" type="bool" value="true"/>
-  <property name="color-palette" type="string" value="#323230302f2f;#cccc24241d1d;#989897971a1a;#d7d799992121;#454585858888;#b1b162628686;#68689d9d6a6a;#f2f2e5e5bcbc;#1d1d20202121;#fbfb49493434;#b8b8bbbb2626;#fafabdbd2f2f;#8383a5a59898;#d3d386869b9b;#8e8ec0c07c7c;#fffff1f1c6c6"/>
+  <property name="color-palette" type="string" value="#282828282828;#cccc24241d1d;#989897971a1a;#d7d799992121;#454585858888;#b1b162628686;#68689d9d6a6a;#a8a899998484;#929283837474;#fbfb49493434;#b8b8bbbb2626;#fafabdbd2f2f;#8383a5a59898;#d3d386869b9b;#8e8ec0c07c7c;#ebebdbdbb2b2"/>
   <property name="color-bold-is-bright" type="bool" value="true"/>
   <property name="color-use-theme" type="bool" value="false"/>
   <property name="tab-activity-color" type="string" value="#aa0000"/>
@@ -35,3 +35,4 @@
   <property name="command-login-shell" type="bool" value="false"/>
   <property name="misc-confirm-close" type="bool" value="false"/>
 </channel>
+
