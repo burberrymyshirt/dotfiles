@@ -16,7 +16,7 @@ export PATH=$PATH:/home/larse/.local/share/cargo/bin
 export EDITOR=nvim
 export VISUAL=nvim
 #export TERM=alacritty
-export BROWSER=firefox
+export BROWSER=thorium-browser
 
 # Sets xorg directories
 export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
