@@ -1,5 +1,5 @@
 [submodule "files/.config/nvim"]
-	path = files/dot-config/nvim
+	path = files/dot-config/nvim-old
 	url = git@github.com:burberrymyshirt/kickstart-modular.nvim.git
 [submodule "files/.config/suckless/dwmblocks"]
 	path = files/dot-config/suckless/dwmblocks
