@@ -7,3 +7,5 @@ nnoremap P "+P
 vnoremap P "+P
 nnoremap dd "+dd
 vnoremap d "+d
+imap <C-n> <ESC>:action HippieCompletion<CR>a
+imap <C-p> <ESC>:action HippieBackwardCompletion<CR>a
