@@ -1,7 +1,8 @@
 files/dot-config/tmux/plugins*
 
-files/dot-ssh/
+!files/dot-ssh/
 !files/dot-ssh/config
+files/dot-ssh/*
 
 files/dot-config/btop/btop.log
 files/dot-config/shell/aws_credentials
