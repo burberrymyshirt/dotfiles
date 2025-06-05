@@ -2,3 +2,6 @@ complete -F _complete_alias dc
 complete -F _complete_alias d
 complete -F _complete_alias vi
 complete -F _complete_alias vim
+complete -F _complete_alias ....
+complete -F _complete_alias ...
+complete -F _complete_alias ..
