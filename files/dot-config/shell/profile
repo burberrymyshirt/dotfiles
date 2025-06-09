@@ -90,3 +90,4 @@ export CR_WORK_DIR="$HOME/work"
 
 xrdb -merge "${HOME}/.Xresources"
 
+export MANWIDTH=80
