@@ -43,3 +43,7 @@ alias dc='docker compose'
 alias d='docker'
 alias vim='nvim'
 alias vi='nvim'
+
+alias localignore='git update-index --skip-worktree '
+alias localinclude='git update-index --no-skip-worktree '
+alias lsignored='git ls-files -v | grep ^S'
