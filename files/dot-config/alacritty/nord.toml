@@ -1,0 +1,47 @@
+[colors.primary]
+background = "#eceff4"  # Nord6 - Snow Storm (light background)
+foreground = "#2e3440"  # Nord0 - Polar Night (dark text)
+
+[colors.normal]
+black = "#2e3440"       # Nord0 - Polar Night
+red = "#bf616a"         # Nord11 - Aurora Red
+green = "#a3be8c"       # Nord14 - Aurora Green
+yellow = "#ebcb8b"      # Nord13 - Aurora Yellow
+blue = "#5e81ac"        # Nord9 - Frost Dark Blue
+magenta = "#b48ead"     # Nord15 - Aurora Purple
+cyan = "#88c0d0"        # Nord8 - Frost Cyan
+white = "#3b4252"       # Nord1 - Polar Night
+
+[colors.bright]
+black = "#434c5e"       # Nord2 - Polar Night
+red = "#bf616a"         # Nord11 - Aurora Red
+green = "#a3be8c"       # Nord14 - Aurora Green  
+yellow = "#ebcb8b"      # Nord13 - Aurora Yellow
+blue = "#81a1c1"        # Nord10 - Frost Blue
+magenta = "#b48ead"     # Nord15 - Aurora Purple
+cyan = "#8fbcbb"        # Nord7 - Frost Teal
+white = "#2e3440"       # Nord0 - Polar Night
+
+[colors.dim]
+black = "#4c566a"       # Nord3 - Polar Night
+red = "#94545d"         # Dimmed Aurora Red
+green = "#809575"       # Dimmed Aurora Green
+yellow = "#b29e75"      # Dimmed Aurora Yellow
+blue = "#4a6785"        # Dimmed Frost Blue
+magenta = "#8c738c"     # Dimmed Aurora Purple
+cyan = "#6d96a5"        # Dimmed Frost Cyan
+white = "#434c5e"       # Nord2 - Polar Night
+
+# Selection colors
+[colors.selection]
+text = "#2e3440"        # Nord0 - Dark text
+background = "#d8dee9"  # Nord4 - Snow Storm
+
+# Search colors
+[colors.search.matches]
+foreground = "#2e3440"  # Nord0 - Dark text
+background = "#ebcb8b"  # Nord13 - Aurora Yellow
+
+[colors.search.focused_match]
+foreground = "#eceff4"  # Nord6 - Light text
+background = "#d08770"  # Nord12 - Aurora Orange

@@ -1,0 +1,47 @@
+# JetBrains-inspired grey color scheme
+
+[colors.primary]
+background = "#f7f7f7"
+foreground = "#2b2b2b"
+
+[colors.normal]
+black = "#000000"
+red = "#b71c1c"
+green = "#629755"
+yellow = "#9876aa"
+blue = "#6897bb"
+magenta = "#cc7832"
+cyan = "#6897bb"
+white = "#a9b7c6"
+
+[colors.bright]
+black = "#555555"
+red = "#d32f2f"
+green = "#a8c023"
+yellow = "#d5b778"
+blue = "#9cc4ff"
+magenta = "#ff8785"
+cyan = "#85d3f2"
+white = "#ffffff"
+
+[colors.dim]
+black = "#2b2b2b"
+red = "#8d1919"
+green = "#4a7a42"
+yellow = "#7a6285"
+blue = "#4a7a9b"
+magenta = "#a85c32"
+cyan = "#4a7a9b"
+white = "#8a9199"
+
+[colors.selection]
+text = "#2b2b2b"
+background = "#d4d4d4"
+
+[colors.search.matches]
+foreground = "#000000"
+background = "#ffff00"
+
+[colors.search.focused_match]
+foreground = "#ffffff"
+background = "#ff6600"
