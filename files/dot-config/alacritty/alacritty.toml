@@ -1,7 +1,7 @@
 general.import = [
     # "~/.config/alacritty/gruvbox.toml"
-    "~/.config/alacritty/nord.toml"
-    # "~/.config/alacritty/nord-dark.toml"
+    # "~/.config/alacritty/nord.toml"
+    "~/.config/alacritty/nord-dark.toml"
     # "~/.config/alacritty/grey.toml"
 ]
 
