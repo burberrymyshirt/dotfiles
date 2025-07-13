@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+session_name=${1:-default}
+session_dir=${2:-$PWD}
+
+tmux new-session -d -s "$session_name" -c "$session_dir"
+tmux new-window -c "$session_dir" -t "$session_name":1 -n 'bash'
+tmux new-window -c "$session_dir" -t "$session_name":2 -n 'git' 'lazygit'
+tmux new-window -c "$session_dir" -t "$session_name":3 -n 'vim' 'nvim .'
+tmux select-window -t "$session_name":1
+
+if [[ -z $TMUX ]]; then
+    tmux attach-session -t "$session_name"
+fi
