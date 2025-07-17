@@ -3,14 +3,23 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/work ~/code ~/code/elixir ~/code/go ~/ -mindepth 1 -maxdepth 2 -type d  \
-        -not -path "*/node_modules/*" \
-        -not -path "*/vendor/*" \
-        -not -path "*/Downloads/*" \
-        -not -path "*/Documents/*" \
-        -not -path "*/deps/*" \
-        -not -path "*/_build/*" \
-        -not -path "*/.git/*" | fzf)
+    # selected=$(find ~/work ~/code ~/code/elixir ~/code/go ~/ -mindepth 1 -maxdepth 2 -type d  \
+    #     -not -path "*/node_modules/*" \
+    #     -not -path "*/vendor/*" \
+    #     -not -path "*/Downloads/*" \
+    #     -not -path "*/Documents/*" \
+    #     -not -path "*/deps/*" \
+    #     -not -path "*/_build/*" \
+    #     -not -path "*/.git/*" | fzf)
+    selected=$(
+        find ~/work ~/code ~/code/elixir ~/code/go ~ \
+            -mindepth 1 -maxdepth 2 \
+            \( -name node_modules -o -name vendor -o -name Downloads -o -name Documents \
+            -o -name deps -o -name _build -o -name .git \) -prune \
+            -o -type d -print \
+            | awk '!seen[$0]++' \
+            | fzf
+        )
 fi
 
 if [[ -z $selected ]]; then

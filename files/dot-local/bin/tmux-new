@@ -7,7 +7,7 @@ tmux new-session -d -s "$session_name" -c "$session_dir"
 tmux new-window -c "$session_dir" -t "$session_name":1 -n 'bash'
 tmux new-window -c "$session_dir" -t "$session_name":2 -n 'git' 'bash -c "lazygit ; exec bash"'
 tmux new-window -c "$session_dir" -t "$session_name":3 -n 'vim' 'bash -c "nvim . ; exec bash"'
-tmux new-window -c "$session_dir" -t "$session_name":3 -n 'server'
+tmux new-window -c "$session_dir" -t "$session_name":4 -n 'server'
 tmux select-window -t "$session_name":1
 
 if [[ -z $TMUX ]]; then
