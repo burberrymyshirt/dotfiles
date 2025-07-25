@@ -15,6 +15,14 @@ input "type:keyboard" {
     repeat_delay 300
     repeat_rate 25
 }
+input type:touchpad {
+    click_method clickfinger
+    tap enabled
+    tap_button_map lrm
+    dwt enabled
+    scroll_factor 0.5
+    # natural_scroll disabled
+}
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
