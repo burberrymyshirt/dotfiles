@@ -9,10 +9,19 @@ input "type:keyboard" {
 
     # Enable the option to terminate X session with Ctrl+Alt+Backspace
     xkb_options "terminate:ctrl_alt_bksp"
+    xkb_options "caps:escape"
 
     # Set keyboard auto-repeat delay and rate
     repeat_delay 300
     repeat_rate 25
+}
+input type:touchpad {
+    click_method clickfinger
+    tap enabled
+    tap_button_map lrm
+    dwt enabled
+    scroll_factor 0.5
+    # natural_scroll disabled
 }
 ### Variables
 #

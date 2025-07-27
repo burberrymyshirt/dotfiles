@@ -44,11 +44,24 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight when yanking (copying) text',
-    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-    callback = function()
-        vim.highlight.on_yank({timeout=150})
-    end,
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank { timeout = 150 }
+  end,
 })
 
--- vim: ts=2 sts=2 sw=2 et
+local search_current_word = function()
+  local word = vim.fn.expand '<cword>'
+
+  print(word)
+  vim.fn.setreg('/', word)
+
+  vim.cmd 'normal! n'
+  -- vim.api.nvim_get_current_line()
+  -- local row, column = (vim.api.nvim_win_get_cursor(0))
+end
+
+vim.keymap.set('n', '<leader>sn', search_current_word, { desc = 'Search the current word' })
+
+-- vim: ts(),=2 sts=2 sw=2 et
