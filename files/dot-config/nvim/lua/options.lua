@@ -26,6 +26,8 @@ end)
 -- Enable break indent
 vim.opt.breakindent = true
 
+vim.o.winborder = "rounded"
+
 -- Save undo history
 vim.opt.undofile = true
 
@@ -62,10 +64,10 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 8
 
-vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
+vim.o.tabstop = 4      -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
-vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
-vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
+vim.o.softtabstop = 4  -- Number of spaces inserted instead of a TAB character
+vim.o.shiftwidth = 4   -- Number of spaces inserted when indenting
 
 vim.g.editorconfig = true
 
@@ -74,18 +76,18 @@ vim.o.guicursor = ''
 vim.o.termguicolors = true
 
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "BufEnter" }, {
-    group = vim.api.nvim_create_augroup("ScrollOffEOF", {}),
-    callback = function()
-        local window_height = vim.api.nvim_win_get_height(0)
-        local scrolloff = vim.o.scrolloff
-        local distance = vim.fn.line "$" - vim.fn.line "."
-        local remaining = vim.fn.line "w$" - vim.fn.line "w0" + 1
-        if distance < scrolloff and window_height - remaining + distance < scrolloff then
-            local view = vim.fn.winsaveview()
-            view.topline = view.topline + scrolloff - (window_height - remaining + distance)
-            vim.fn.winrestview(view)
-        end
-    end,
+  group = vim.api.nvim_create_augroup("ScrollOffEOF", {}),
+  callback = function()
+    local window_height = vim.api.nvim_win_get_height(0)
+    local scrolloff = vim.o.scrolloff
+    local distance = vim.fn.line "$" - vim.fn.line "."
+    local remaining = vim.fn.line "w$" - vim.fn.line "w0" + 1
+    if distance < scrolloff and window_height - remaining + distance < scrolloff then
+      local view = vim.fn.winsaveview()
+      view.topline = view.topline + scrolloff - (window_height - remaining + distance)
+      vim.fn.winrestview(view)
+    end
+  end,
 })
 
 -- vim: ts=2 sts=2 sw=2 et
