@@ -12,7 +12,7 @@ stow --dotfiles -t ${HOME} files
 Also make all scripts included executable:
 
 ``` [shell]
-find files/dot-local/bin -type f -exec chmod +x {} \;
+find ${HOME}/.dotfiles/files/dot-local/bin -type f -exec chmod +x {} \;
 ```
 
 ## XDG Base Directory
@@ -67,5 +67,5 @@ git clone https://github.com/tmux-plugins/tpm ${XDG_DATA_HOME:-$HOME/.local/shar
 Then run `<C-Space>I` inside tmux to install all plugins.
 
 ### Other dependencies
-Other dependencies include asdf version manager, complete_alias and paru. 
+Other dependencies include asdf version manager, bash-complete-alias and paru. 
 However none of them are hard dependenceis, they will just print erros in the terminal
