@@ -213,15 +213,22 @@ return {
             },
           },
         },
-        -- phpactor = {
-        --     root_dir = function(fname)
-        --         return util.root_pattern('composer.json', '.git', '.phpactor')(fname) or vim.fs.dirname(fname) -- fallback to file's directory
-        --     end,
-        -- },
-        intelephense = {
+        phpactor = {
+          -- root_dir = function(fname)
+          --   return util.root_pattern('composer.json', '.git', '.phpactor')(fname) or vim.fs.dirname(fname) -- fallback to file's directory
+          -- end,
+          cmd = { "phpactor", "language-server" },
+          filetypes = { "php" },
+          init_options = {
+            ["language_server_phpstan.enabled"] = false,
+            ["language_server_psalm.enabled"] = false,
+          }
 
-          opts = {}
         },
+        -- intelephense = {
+        --
+        --   opts = {}
+        -- },
         lua_ls = {
           -- cmd = {  ...  },
           -- filetypes = { ...  },
