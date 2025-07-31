@@ -88,6 +88,9 @@ export CR_WORK_DIR="$HOME/work"
 # Makes asdf version manager work
 #. /opt/asdf-vm/asdf.sh
 
-xrdb -merge "${HOME}/.Xresources"
+if command -v xrdb >/dev/null 2>&1
+then
+    xrdb -merge "${HOME}/.Xresources"
+fi
 
 export MANWIDTH=80
