@@ -65,3 +65,7 @@ git clone https://github.com/tmux-plugins/tpm ${XDG_DATA_HOME:-$HOME/.local/shar
 ```
 
 Then run `<C-Space>I` inside tmux to install all plugins.
+
+### Other dependencies
+Other dependencies include asdf version manager, complete_alias and paru. 
+However none of them are hard dependenceis, they will just print erros in the terminal
