@@ -3,18 +3,16 @@
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
+set $mod Mod4
 input "type:keyboard" {
-    xkb_layout "dk"
+    xkb_layout "dk,us"
     xkb_model "pc105"
-
-    # Enable the option to terminate X session with Ctrl+Alt+Backspace
-    xkb_options "terminate:ctrl_alt_bksp"
-    xkb_options "caps:escape"
-
-    # Set keyboard auto-repeat delay and rate
+    xkb_options "terminate:ctrl_alt_bksp,caps:escape"
     repeat_delay 300
     repeat_rate 25
 }
+bindsym $mod+i input type:keyboard xkb_switch_layout next
+
 input type:touchpad {
     click_method clickfinger
     tap enabled
@@ -26,7 +24,6 @@ input type:touchpad {
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
