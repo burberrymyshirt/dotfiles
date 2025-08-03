@@ -1,4 +1,4 @@
-    #!/bin/sh
+#!/bin/sh
 
 # Stateless keyboard layout toggle (Danish <-> US)
 
