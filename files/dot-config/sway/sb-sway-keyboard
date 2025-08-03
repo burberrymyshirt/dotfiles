@@ -1,0 +1,43 @@
+#!/bin/sh
+# Keyboard layout status script for Sway
+
+# Check if running under Wayland with Sway
+if [ -z "$WAYLAND_DISPLAY" ] || ! command -v swaymsg > /dev/null 2>&1; then
+    exit 1
+fi
+
+# Get current layout
+if command -v jq > /dev/null 2>&1; then
+    current_layout=$(swaymsg -t get_inputs \
+        | jq -r '.[] | select(.type == "keyboard") | select(.xkb_active_layout_name != null) | .xkb_active_layout_name' \
+        | head -n1)
+    # Convert full layout names to short codes
+    case "$current_layout" in
+        *"Danish"*|*"Denmark"*)
+            current_layout="dk"
+            ;;
+        *"English"*|*"US"*|*"United States"*)
+            current_layout="us"
+            ;;
+    esac
+else
+    # Fallback without jq
+    layout_index=$(swaymsg -t get_inputs | grep -o '"xkb_active_layout_index":[0-9]*' | head -n1 | cut -d':' -f2)
+    case "$layout_index" in
+        "0") current_layout="dk" ;;
+        "1") current_layout="us" ;;
+    esac
+fi
+
+# Output flag based on current layout
+case "$current_layout" in
+    "dk")
+        echo "🇩🇰"
+        ;;
+    "us")
+        echo "🇺🇸"
+        ;;
+    *)
+        echo "⌨️"
+        ;;
+esac
