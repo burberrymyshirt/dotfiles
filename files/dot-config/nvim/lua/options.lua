@@ -90,4 +90,13 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "BufEnter" }, {
   end,
 })
 
+vim.cmd("set colorcolumn=80")
+
+vim.filetype.add({
+  pattern = {
+    ['%.env%..*'] = 'sh', -- matches .env.local, .env.development, etc.
+    ['.*%.env'] = 'sh',   -- matches local.env, development.env, etc.
+  },
+})
+
 -- vim: ts=2 sts=2 sw=2 et
