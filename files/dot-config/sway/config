@@ -11,7 +11,7 @@ input "type:keyboard" {
     repeat_delay 300
     repeat_rate 25
 }
-bindsym $mod+i input type:keyboard xkb_switch_layout next
+bindsym $mod+u input type:keyboard xkb_switch_layout next
 
 input type:touchpad {
     click_method clickfinger
