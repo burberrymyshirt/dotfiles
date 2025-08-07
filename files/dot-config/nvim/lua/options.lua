@@ -34,6 +34,7 @@ vim.opt.undofile = true
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.o.si = true
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
@@ -94,9 +95,12 @@ vim.cmd("set colorcolumn=80")
 
 vim.filetype.add({
   pattern = {
-    ['%.env%..*'] = 'sh', -- matches .env.local, .env.development, etc.
-    ['.*%.env'] = 'sh',   -- matches local.env, development.env, etc.
+    ['%.env%..*'] = 'sh',
+    ['.*%.env'] = 'sh',
   },
 })
+
+vim.o.cuc = false
+vim.o.cul = true
 
 -- vim: ts=2 sts=2 sw=2 et
