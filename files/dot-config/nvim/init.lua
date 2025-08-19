@@ -1,103 +1,187 @@
---[[
+-- globals
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+vim.g.editorconfig = true
 
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-========                                    .-----.          ========
-========         .----------------------.   | === |          ========
-========         |.-""""""""""""""""""-.|   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||   KICKSTART.NVIM   ||   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||                    ||   |-----|          ========
-========         ||:Tutor              ||   |:::::|          ========
-========         |'-..................-'|   |____o|          ========
-========         `"")----------------(""`   ___________      ========
-========        /::::::::::|  |::::::::::\  \ no mouse \     ========
-========       /:::========|  |==hjkl==:::\  \ required \    ========
-========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
-========                                                     ========
-=====================================================================
-=====================================================================
+-- options
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.mouse = 'a'
+vim.o.list = true
+vim.o.swapfile = false
+vim.o.termguicolors = true
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.listchars = "tab:» ,trail:·,nbsp:␣"
+vim.o.winborder = 'rounded'
+vim.o.undofile = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.o.smartindent = true
+vim.o.colorcolumn = '80'
+vim.o.cursorcolumn = false
+vim.o.cursorline = true
+vim.o.guicursor = ''
+vim.o.wrap = true
+vim.o.incsearch = true
+vim.o.ignorecase = true
+vim.o.signcolumn = 'yes'
+vim.o.smartcase = true
+vim.o.updatetime = 500
+vim.o.inccommand = 'split'
+vim.o.scrolloff = 8
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.shortmess:append "c"
+vim.cmd('syntax enable')
+vim.cmd('filetype plugin indent on')
 
-What is Kickstart?
+vim.api.nvim_create_autocmd({'TextYankPost'}, {
+    group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+    callback = function()
+        vim.hl.on_yank { timeout = 100 }
+    end,
+})
 
-  Kickstart.nvim is *not* a distribution.
+vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "BufEnter" }, {
+    group = vim.api.nvim_create_augroup("ScrollOffEOF", {}),
+    callback = function()
+        local window_height = vim.api.nvim_win_get_height(0)
+        local scrolloff = vim.o.scrolloff
+        local distance = vim.fn.line "$" - vim.fn.line "."
+        local remaining = vim.fn.line "w$" - vim.fn.line "w0" + 1
+        if distance < scrolloff and window_height - remaining + distance < scrolloff then
+            local view = vim.fn.winsaveview()
+            view.topline = view.topline + scrolloff - (window_height - remaining + distance)
+            vim.fn.winrestview(view)
+        end
+    end,
+})
 
-  Kickstart.nvim is a starting point for your own configuration.
-    The goal is that you can read every line of code, top-to-bottom, understand
-    what your configuration is doing, and modify it to suit your needs.
+-- more patterns for env files, as the naming conventions of some
+-- frameworks don't work with the default patterns
+vim.filetype.add({
+    pattern = {
+        ['%.env%..*'] = 'sh',
+        ['.*%.env'] = 'sh',
+    },
+})
 
-    Once you've done that, you can start exploring, configuring and tinkering to
-    make Neovim your own! That might mean leaving Kickstart just the way it is for a while
-    or immediately breaking it into modular pieces. It's up to you!
+-- plugins
+vim.pack.add({
+    { src = 'https://github.com/shaunsingh/nord.nvim' },
+    { src = 'https://github.com/echasnovski/mini.pick' },
+    -- treesitter switched to calling it main, but left the master as the default on github
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
+    { src = 'https://github.com/neovim/nvim-lspconfig' },
+    { src = 'https://github.com/mason-org/mason.nvim' },
+    { src = 'https://github.com/Saghen/blink.cmp' },
+})
 
-    If you don't know anything about Lua, I recommend taking some time to read through
-    a guide. One possible example which will only take 10-15 minutes:
-      - https://learnxinyminutes.com/docs/lua/
+require'mini.pick'.setup()
+require'mason'.setup()
 
-    After understanding a bit more about Lua, you can use `:help lua-guide` as a
-    reference for how Neovim integrates Lua.
-    - :help lua-guide
-    - (or HTML version): https://neovim.io/doc/user/lua-guide.html
+local lsps = {'gopls', 'lua_ls', 'elixirls'}
+vim.lsp.enable(lsps)
 
-Kickstart Guide:
+local capabilities = vim.tbl_deep_extend(
+  'force',
+  vim.lsp.protocol.make_client_capabilities(),
+  require('blink.cmp').get_lsp_capabilities()
+)
 
-  TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
+require'lspconfig'.elixirls.setup({
+    capabilities = capabilities,
+    cmd = {vim.fn.stdpath('data')..'/mason/bin/elixir-ls'}
+})
 
-    If you don't know what this means, type the following:
-      - <escape key>
-      - :
-      - Tutor
-      - <enter key>
+require'nvim-treesitter'.install { 'elixir', 'lua', 'go', 'php' }
 
-    (If you already know the Neovim basics, you can skip this step.)
+require'nvim-treesitter.config'.setup {
+    auto_install = true,
+    ensure_installed = {
+        "eex",
+        "elixir",
+        "erlang",
+        "heex",
+    },
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    }
+}
 
-  Once you've completed that, you can continue working through **AND READING** the rest
-  of the kickstart init.lua.
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'elixir' },
+  callback = function() vim.treesitter.start() end,
+})
 
-  Next, run AND READ `:help`.
-    This will open up a help window with some basic information
-    about reading, navigating and searching the builtin help documentation.
+-- build blink.cmps fuzzy finder
+local blink_path = vim.fn.stdpath('data')..'/site/pack/core/opt/blink.cmp'
+if vim.fn.getftype(blink_path..'/target') == '' then
+    vim.system({
+        'cargo', '+nightly', 'build',
+        '--manifest-path', blink_path..'/Cargo.toml',
+        '--release'
+    }, { cwd = blink_path })
+end
 
-    This should be the first place you go to look when you're stuck or confused
-    with something. It's one of my favorite Neovim features.
+require'blink.cmp'.setup({
+    fuzzy = {
+        implementation = 'prefer_rust'
+    },
+    completion = {
+        documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 0,
+            treesitter_highlighting = true,
+        },
+    }
+})
 
-    MOST IMPORTANTLY, we provide a keymap "<space>sh" to [s]earch the [h]elp documentation,
-    which is very useful when you're not exactly sure of what you're looking for.
+-- keymaps
+local map = vim.keymap.set
+map('n', '<Esc>', '<cmd>nohlsearch<CR>')
+map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
-  I have left several `:help X` comments throughout the init.lua
-    These are hints about where to find more information about the relevant settings,
-    plugins or Neovim features used in Kickstart.
+--TODO: add another one like this, to grep entire project for the selected word
+-- with mini.pick or something
+map('n', '<leader>sn', function()
+    local word = vim.fn.expand '<cword>'
+    vim.fn.setreg('/', word)
+    vim.cmd 'normal! n'
+end, { desc = 'Search the current word' })
 
-   NOTE: Look for lines like this
+map('n', '<leader>sf', '<cmd>Pick files<CR>')
+map('n', '<leader>sh', '<cmd>Pick help<CR>')
 
-    Throughout the file. These are for you, the reader, to help you understand what is happening.
-    Feel free to delete them once you know what you're doing, but they should serve as a guide
-    for when you are first encountering a few different constructs in your Neovim config.
+-- I don't really like these binds that much
+map('n', '<leader>ww', ':write<CR>')
+map('n', '<leader>wa', ':wa<CR>')
+map('n', '<leader>wq', ':wq<CR>')
+map('n', '<leader>q',  ':quit<CR>')
 
-If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
+map('n', '<leader>y', '"+yy')
+map({ 'v', 'x' }, '<leader>y', '"+y')
+-- map('n', '<leader>d', '"+dd')
+-- map({ 'v', 'x' }, '<leader>d', '"+d')
+map('n', '<leader>de', vim.diagnostic.open_float)
+map({'v','n'}, "<leader>dn", function()
+  vim.diagnostic.jump({ count = 1 })
+end, { desc = "Go to next diagnostic" })
+map({'v','n'}, "<leader>dp", function()
+  vim.diagnostic.jump({ count = -1 })
+end, { desc = "Go to previous diagnostic" })
 
-I hope you enjoy your Neovim journey,
-- TJ
+--alternate file stuff, figure out if I even need that, or if I am just going
+--to use harpoon
+-- map({ 'n', 'v', 'x' }, '<leader>s', ':e #<CR>')
+-- map({ 'n', 'v', 'x' }, '<leader>S', ':sf #<CR>')
 
-P.S. You can delete this when you're done too. It's your config now! :)
---]]
-
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
-
-require 'options'
---
-require 'keymaps'
---
-require 'lazy-bootstrap'
---
-require 'lazy-plugins'
---
-require 'colors-setup'
-
-require('goatfig.health').check()
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- colors
+vim.cmd('colorscheme nord')
+vim.cmd('set background=dark')

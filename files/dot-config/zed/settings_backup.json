@@ -28,6 +28,6 @@
     "ss08": false
   },
   "format_on_save": "off",
-  "show_edit_predictions": false,
+  "show_inline_completions": false,
   "show_whitespaces": "selection"
 }
