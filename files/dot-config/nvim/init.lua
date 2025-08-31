@@ -120,11 +120,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- build blink.cmps fuzzy finder
 local blink_path = vim.fn.stdpath('data')..'/site/pack/core/opt/blink.cmp'
 if vim.fn.getftype(blink_path..'/target') == '' then
-    vim.system({
-        'cargo', '+nightly', 'build',
-        '--manifest-path', blink_path..'/Cargo.toml',
-        '--release'
-    }, { cwd = blink_path })
+    vim.cmd('!cargo +nightly build --manifest-path '..blink_path..'/Cargo.toml --release')
 end
 
 require'blink.cmp'.setup({
