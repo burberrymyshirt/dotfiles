@@ -176,6 +176,7 @@ end, { desc = "Go to next diagnostic" })
 map({'v','n'}, "<leader>dp", function()
   vim.diagnostic.jump({ count = -1 })
 end, { desc = "Go to previous diagnostic" })
+map({'v','n','x'}, "<leader>df", vim.lsp.buf.format)
 
 --alternate file stuff, figure out if I even need that, or if I am just going
 --to use harpoon
