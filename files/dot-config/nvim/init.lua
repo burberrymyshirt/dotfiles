@@ -125,7 +125,6 @@ vim.api.nvim_create_autocmd('FileType', {
 -- build blink.cmps fuzzy finder
 local blink_path = vim.fn.stdpath('data')..'/site/pack/core/opt/blink.cmp'
 if vim.fn.getftype(blink_path..'/target') == '' then
-    print("din mor er grim")
     vim.cmd('!cargo +nightly build --manifest-path '..blink_path..'/Cargo.toml --release')
 end
 
@@ -179,6 +178,7 @@ end, { desc = "Go to next diagnostic" })
 map({'v','n'}, "<leader>dp", function()
   vim.diagnostic.jump({ count = -1 })
 end, { desc = "Go to previous diagnostic" })
+map({'v','n','x'}, "<leader>df", vim.lsp.buf.format)
 
 --alternate file stuff, figure out if I even need that, or if I am just going
 --to use harpoon
