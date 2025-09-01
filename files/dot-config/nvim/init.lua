@@ -82,7 +82,7 @@ vim.pack.add({
 require'mini.pick'.setup()
 require'mason'.setup()
 
-local lsps = {'gopls', 'lua_ls', 'elixirls'}
+local lsps = {'gopls', 'lua_ls', 'elixirls', 'phpactor'}
 vim.lsp.enable(lsps)
 
 local capabilities = vim.tbl_deep_extend(
@@ -96,16 +96,21 @@ require'lspconfig'.elixirls.setup({
     cmd = {vim.fn.stdpath('data')..'/mason/bin/elixir-ls'}
 })
 
+require'lspconfig'.phpactor.setup({
+    capabilities = capabilities,
+    cmd = {vim.fn.stdpath('data')..'/mason/bin/phpactor'}
+})
+
 require'nvim-treesitter'.install { 'elixir', 'lua', 'go', 'php' }
 
 require'nvim-treesitter.config'.setup {
     auto_install = true,
-    ensure_installed = {
-        "eex",
-        "elixir",
-        "erlang",
-        "heex",
-    },
+    -- ensure_installed = {
+    --     "eex",
+    --     "elixir",
+    --     "erlang",
+    --     "heex",
+    -- },
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
@@ -120,11 +125,8 @@ vim.api.nvim_create_autocmd('FileType', {
 -- build blink.cmps fuzzy finder
 local blink_path = vim.fn.stdpath('data')..'/site/pack/core/opt/blink.cmp'
 if vim.fn.getftype(blink_path..'/target') == '' then
-    vim.system({
-        'cargo', '+nightly', 'build',
-        '--manifest-path', blink_path..'/Cargo.toml',
-        '--release'
-    }, { cwd = blink_path })
+    print("din mor er grim")
+    vim.cmd('!cargo +nightly build --manifest-path '..blink_path..'/Cargo.toml --release')
 end
 
 require'blink.cmp'.setup({
@@ -157,6 +159,7 @@ map('n', '<leader>sn', function()
 end, { desc = 'Search the current word' })
 
 map('n', '<leader>sf', '<cmd>Pick files<CR>')
+map('n', '<leader>sg', '<cmd>Pick grep_live<CR>')
 map('n', '<leader>sh', '<cmd>Pick help<CR>')
 
 -- I don't really like these binds that much
