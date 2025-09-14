@@ -82,7 +82,7 @@ vim.pack.add({
 require'mini.pick'.setup()
 require'mason'.setup()
 
-local lsps = {'gopls', 'lua_ls', 'elixirls'}
+local lsps = {'gopls', 'lua_ls', 'elixirls', 'phpactor'}
 vim.lsp.enable(lsps)
 
 local capabilities = vim.tbl_deep_extend(
@@ -96,16 +96,21 @@ require'lspconfig'.elixirls.setup({
     cmd = {vim.fn.stdpath('data')..'/mason/bin/elixir-ls'}
 })
 
+require'lspconfig'.phpactor.setup({
+    capabilities = capabilities,
+    cmd = {vim.fn.stdpath('data')..'/mason/bin/phpactor'}
+})
+
 require'nvim-treesitter'.install { 'elixir', 'lua', 'go', 'php' }
 
 require'nvim-treesitter.config'.setup {
     auto_install = true,
-    ensure_installed = {
-        "eex",
-        "elixir",
-        "erlang",
-        "heex",
-    },
+    -- ensure_installed = {
+    --     "eex",
+    --     "elixir",
+    --     "erlang",
+    --     "heex",
+    -- },
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
