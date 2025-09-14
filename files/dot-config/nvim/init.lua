@@ -153,6 +153,7 @@ map('n', '<leader>sn', function()
 end, { desc = 'Search the current word' })
 
 map('n', '<leader>sf', '<cmd>Pick files<CR>')
+map('n', '<leader>sg', '<cmd>Pick grep_live<CR>')
 map('n', '<leader>sh', '<cmd>Pick help<CR>')
 
 -- I don't really like these binds that much
