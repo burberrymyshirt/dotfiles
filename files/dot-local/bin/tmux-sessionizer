@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ $# -eq 1 ]]; then
-    selected=$1
+    selected=$(realpath "$1")
 else
     # selected=$(find ~/work ~/code ~/code/elixir ~/code/go ~/ -mindepth 1 -maxdepth 2 -type d  \
     #     -not -path "*/node_modules/*" \
