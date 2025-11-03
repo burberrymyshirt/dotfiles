@@ -15,6 +15,11 @@ Also make all scripts included executable:
 find ${HOME}/.dotfiles/files/dot-local/bin -type f -exec chmod +x {} \;
 ```
 
+Add user to usual groups
+``` [shell]
+sudo usermod -aG audio,video,libvirt,docker $(whoami)
+```
+
 ## XDG Base Directory
 
 Remember to set XDG variables, otherwise some configurations might not work properly.
