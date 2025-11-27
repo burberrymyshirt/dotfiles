@@ -31,13 +31,13 @@ vim.o.signcolumn = 'yes'
 vim.o.smartcase = true
 vim.o.updatetime = 500
 vim.o.inccommand = 'split'
-vim.o.scrolloff = 8
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.o.scrolloff = 5
+vim.opt.completeopt = { "menu", "menuone", "noselect", "popup" }
 vim.opt.shortmess:append "c"
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
 
-vim.api.nvim_create_autocmd({'TextYankPost'}, {
+vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
     group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
     callback = function()
         vim.hl.on_yank { timeout = 100 }
@@ -79,31 +79,14 @@ vim.pack.add({
     { src = 'https://github.com/Saghen/blink.cmp' },
 })
 
-require'mini.pick'.setup()
-require'mason'.setup()
+require 'mini.pick'.setup()
+require 'mason'.setup()
 
-local lsps = {'gopls', 'lua_ls', 'elixirls', 'phpactor'}
-vim.lsp.enable(lsps)
+vim.lsp.enable({ 'gopls', 'lua_ls', 'elixirls', 'phpactor' })
 
-local capabilities = vim.tbl_deep_extend(
-  'force',
-  vim.lsp.protocol.make_client_capabilities(),
-  require('blink.cmp').get_lsp_capabilities()
-)
+require 'nvim-treesitter'.install { 'elixir', 'lua', 'go', 'php' }
 
-require'lspconfig'.elixirls.setup({
-    capabilities = capabilities,
-    cmd = {vim.fn.stdpath('data')..'/mason/bin/elixir-ls'}
-})
-
-require'lspconfig'.phpactor.setup({
-    capabilities = capabilities,
-    cmd = {vim.fn.stdpath('data')..'/mason/bin/phpactor'}
-})
-
-require'nvim-treesitter'.install { 'elixir', 'lua', 'go', 'php' }
-
-require'nvim-treesitter.config'.setup {
+require 'nvim-treesitter.config'.setup {
     auto_install = true,
     -- ensure_installed = {
     --     "eex",
@@ -118,31 +101,66 @@ require'nvim-treesitter.config'.setup {
 }
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'elixir' },
-  callback = function() vim.treesitter.start() end,
+    pattern = { 'elixir', 'php', 'go', 'c', 'lua' },
+    callback = function() vim.treesitter.start() end,
 })
 
 -- build blink.cmps fuzzy finder
-local blink_path = vim.fn.stdpath('data')..'/site/pack/core/opt/blink.cmp'
-if vim.fn.getftype(blink_path..'/target') == '' then
-    vim.cmd('!cargo +nightly build --manifest-path '..blink_path..'/Cargo.toml --release')
-end
+-- local blink_path = vim.fn.stdpath('data') .. '/site/pack/core/opt/blink.cmp'
+-- if vim.fn.getftype(blink_path .. '/target') == '' then
+--     vim.cmd('!cargo +nightly build --manifest-path ' .. blink_path .. '/Cargo.toml --release')
+-- end
+--
+-- require 'blink.cmp'.setup({
+--     fuzzy = {
+--         implementation = 'prefer_rust'
+--     },
+--     completion = {
+--         documentation = {
+--             auto_show = true,
+--             auto_show_delay_ms = 0,
+--             treesitter_highlighting = true,
+--         },
+--     }
+-- })
 
-require'blink.cmp'.setup({
-    fuzzy = {
-        implementation = 'prefer_rust'
-    },
-    completion = {
-        documentation = {
-            auto_show = true,
-            auto_show_delay_ms = 0,
-            treesitter_highlighting = true,
-        },
-    }
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('my.lsp', {}),
+    callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
+        if client:supports_method('textDocument/completion') then
+            -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+            local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+            client.server_capabilities.completionProvider.triggerCharacters = chars
+            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+        end
+    end,
 })
+
+local function pack_clean()
+    local unused_plugins = {}
+
+    for _, plugin in ipairs(vim.pack.get()) do
+        if not plugin.active then
+            table.insert(unused_plugins, plugin.spec.name)
+        end
+    end
+
+    if #unused_plugins == 0 then
+        print("No unused plugins.")
+        return
+    end
+
+    local choice = vim.fn.confirm("Remove unused plugins?", "&Yes\n&No", 2)
+    if choice == 1 then
+        vim.pack.del(unused_plugins)
+    end
+end
 
 -- keymaps
 local map = vim.keymap.set
+map('n', '<leader>pc', pack_clean)
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -161,24 +179,18 @@ map('n', '<leader>sf', '<cmd>Pick files<CR>')
 map('n', '<leader>sg', '<cmd>Pick grep_live<CR>')
 map('n', '<leader>sh', '<cmd>Pick help<CR>')
 
--- I don't really like these binds that much
-map('n', '<leader>ww', ':write<CR>')
-map('n', '<leader>wa', ':wa<CR>')
-map('n', '<leader>wq', ':wq<CR>')
-map('n', '<leader>q',  ':quit<CR>')
-
 map('n', '<leader>y', '"+yy')
 map({ 'v', 'x' }, '<leader>y', '"+y')
--- map('n', '<leader>d', '"+dd')
--- map({ 'v', 'x' }, '<leader>d', '"+d')
 map('n', '<leader>de', vim.diagnostic.open_float)
-map({'v','n'}, "<leader>dn", function()
-  vim.diagnostic.jump({ count = 1 })
-end, { desc = "Go to next diagnostic" })
-map({'v','n'}, "<leader>dp", function()
-  vim.diagnostic.jump({ count = -1 })
-end, { desc = "Go to previous diagnostic" })
-map({'v','n','x'}, "<leader>df", vim.lsp.buf.format)
+map({ 'v', 'n' }, "<leader>dn",
+    function() vim.diagnostic.jump({ count = 1 }) end,
+    { desc = "Go to next diagnostic" }
+)
+map({ 'v', 'n' }, "<leader>dp",
+    function() vim.diagnostic.jump({ count = -1 }) end,
+    { desc = "Go to previous diagnostic" }
+)
+map({ 'v', 'n', 'x' }, "<leader>df", vim.lsp.buf.format)
 
 --alternate file stuff, figure out if I even need that, or if I am just going
 --to use harpoon
@@ -186,5 +198,6 @@ map({'v','n','x'}, "<leader>df", vim.lsp.buf.format)
 -- map({ 'n', 'v', 'x' }, '<leader>S', ':sf #<CR>')
 
 -- colors
-vim.cmd('colorscheme nord')
+vim.cmd('colorscheme evening')
 vim.cmd('set background=dark')
+
