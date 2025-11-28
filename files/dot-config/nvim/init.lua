@@ -32,7 +32,7 @@ vim.o.smartcase = true
 vim.o.updatetime = 500
 vim.o.inccommand = 'split'
 vim.o.scrolloff = 5
-vim.opt.completeopt = { "menu", "menuone", "noselect", "popup" }
+vim.opt.completeopt = { "menu", "menuone", "noinsert" }
 vim.opt.shortmess:append "c"
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
