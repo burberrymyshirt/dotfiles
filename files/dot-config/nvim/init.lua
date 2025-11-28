@@ -161,6 +161,9 @@ end
 -- keymaps
 local map = vim.keymap.set
 map('n', '<leader>pc', pack_clean)
+-- map({'n', 'x', 'v' }, ';', ':')
+-- map({'n', 'x', 'v' }, ':', ';')
+map('n', '<leader>pc', pack_clean)
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -182,6 +185,7 @@ map('n', '<leader>sh', '<cmd>Pick help<CR>')
 map('n', '<leader>y', '"+yy')
 map({ 'v', 'x' }, '<leader>y', '"+y')
 map('n', '<leader>de', vim.diagnostic.open_float)
+map('n', '<leader>rn', vim.lsp.buf.rename)
 map({ 'v', 'n' }, "<leader>dn",
     function() vim.diagnostic.jump({ count = 1 }) end,
     { desc = "Go to next diagnostic" }
@@ -200,4 +204,3 @@ map({ 'v', 'n', 'x' }, "<leader>df", vim.lsp.buf.format)
 -- colors
 vim.cmd('colorscheme evening')
 vim.cmd('set background=dark')
-
