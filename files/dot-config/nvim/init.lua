@@ -124,6 +124,27 @@ vim.api.nvim_create_autocmd('FileType', {
 --     }
 -- })
 
+local orig_float_func = vim.lsp.util.open_floating_preview
+vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
+    local buffer_id = vim.api.nvim_get_current_buf()
+    local new_buffer_id, win_id = assert(orig_float_func(contents, syntax, opts))
+    local win_close_func = function()
+        if (vim.api.nvim_win_is_valid(win_id)) then
+            vim.api.nvim_win_close(win_id, true)
+        end
+    end
+    vim.keymap.set('n', '<Esc>', '', {
+        callback = win_close_func,
+        buffer = buffer_id,
+        desc = 'closes floating lsp doc window'
+    })
+    vim.keymap.set('n', '<Esc>', '', {
+        callback = win_close_func,
+        buffer = new_buffer_id,
+        desc = 'closes floating lsp doc window'
+    })
+end
+
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
     callback = function(args)
