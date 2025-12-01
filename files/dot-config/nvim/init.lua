@@ -88,12 +88,14 @@ require 'nvim-treesitter'.install { 'elixir', 'lua', 'go', 'php' }
 
 require 'nvim-treesitter.config'.setup {
     auto_install = true,
-    -- ensure_installed = {
-    --     "eex",
-    --     "elixir",
-    --     "erlang",
-    --     "heex",
-    -- },
+    ensure_installed = {
+        "eex",
+        "elixir",
+        "erlang",
+        "heex",
+        'phpactor',
+        'php',
+    },
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
@@ -124,37 +126,76 @@ vim.api.nvim_create_autocmd('FileType', {
 --     }
 -- })
 
-local orig_float_func = vim.lsp.util.open_floating_preview
-vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
-    local buffer_id = vim.api.nvim_get_current_buf()
-    local new_buffer_id, win_id = assert(orig_float_func(contents, syntax, opts))
-    local win_close_func = function()
-        if (vim.api.nvim_win_is_valid(win_id)) then
-            vim.api.nvim_win_close(win_id, true)
-        end
-    end
-    vim.keymap.set('n', '<Esc>', '', {
-        callback = win_close_func,
-        buffer = buffer_id,
-        desc = 'closes floating lsp doc window'
-    })
-    vim.keymap.set('n', '<Esc>', '', {
-        callback = win_close_func,
-        buffer = new_buffer_id,
-        desc = 'closes floating lsp doc window'
-    })
-end
-
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
     callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
-        if client:supports_method('textDocument/completion') then
-            -- Optional: trigger autocompletion on EVERY keypress. May be slow!
-            local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-            client.server_capabilities.completionProvider.triggerCharacters = chars
+        ---Utility for keymap creation.
+        ---@param lhs string
+        ---@param rhs string|function
+        ---@param opts string|table
+        ---@param mode? string|string[]
+        local function keymap(lhs, rhs, opts, mode)
+            opts = type(opts) == 'string' and { desc = opts }
+                or vim.tbl_extend('error', opts --[[@as table]], { buffer = args.buf })
+            mode = mode or 'n'
+            vim.keymap.set(mode, lhs, rhs, opts)
+        end
+
+        ---For replacing certain <C-x>... keymaps.
+        ---@param keys string
+        local function feedkeys(keys)
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), 'n', true)
+        end
+
+        ---Is the completion menu open?
+        local function pumvisible()
+            return vim.fn.pumvisible() ~= 0
+        end
+
+        -- Enable completion and configure keybindings.
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_completion, args.buf) then
             vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+
+            -- Use slash to dismiss the completion menu.
+            keymap('/', function()
+                return pumvisible() and '<C-e>' or '/'
+            end, { expr = true }, 'i')
+            -- Use <C-n> to navigate to the next completion or:
+            -- - Trigger LSP completion.
+            -- - If there's no one, fallback to vanilla omnifunc.
+            keymap('<C-n>', function()
+                if pumvisible() then
+                    feedkeys '<C-n>'
+                else
+                    if next(vim.lsp.get_clients { bufnr = 0 }) then
+                        vim.lsp.completion.trigger()
+                    else
+                        if vim.bo.omnifunc == '' then
+                            feedkeys '<C-x><C-n>'
+                        else
+                            feedkeys '<C-x><C-o>'
+                        end
+                    end
+                end
+            end, 'Trigger/select next completion', 'i')
+
+            -- Buffer completions.
+            keymap('<C-u>', '<C-x><C-n>', { desc = 'Buffer completions' }, 'i')
+
+            keymap('<S-Tab>', function()
+                if pumvisible() then
+                    feedkeys '<C-p>'
+                elseif vim.snippet.active { direction = -1 } then
+                    vim.snippet.jump(-1)
+                else
+                    feedkeys '<S-Tab>'
+                end
+            end, {}, { 'i', 's' })
+
+            -- Inside a snippet, use backspace to remove the placeholder.
+            keymap('<BS>', '<C-o>s', {}, 's')
         end
     end,
 })
@@ -181,11 +222,34 @@ end
 
 -- keymaps
 local map = vim.keymap.set
+
+local orig_float_func = vim.lsp.util.open_floating_preview
+vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
+    local buffer_id = vim.api.nvim_get_current_buf()
+    local new_buffer_id, win_id = assert(orig_float_func(contents, syntax, opts))
+    local win_close_func = function()
+        if (vim.api.nvim_win_is_valid(win_id)) then
+            vim.api.nvim_win_close(win_id, true)
+        else
+            vim.cmd('nohlsearch')
+        end
+        vim.lsp.buf.clear_references()
+    end
+    map('n', '<Esc>', '', {
+        callback = win_close_func,
+        buffer = buffer_id,
+        desc = 'closes floating lsp doc window'
+    })
+    map('n', '<Esc>', '', {
+        callback = win_close_func,
+        buffer = new_buffer_id,
+        desc = 'closes floating lsp doc window'
+    })
+end
+
 map('n', '<leader>pc', pack_clean)
 -- map({'n', 'x', 'v' }, ';', ':')
 -- map({'n', 'x', 'v' }, ':', ';')
-map('n', '<leader>pc', pack_clean)
-map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
