@@ -217,7 +217,11 @@ map({ 'v', 'n' }, "<leader>dp",
     { desc = "Go to previous diagnostic" }
 )
 map({ 'v', 'n', 'x' }, "<leader>df", vim.lsp.buf.format)
-vim.cmd('Alias qw wq')
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.fn.call("CmdAlias", {'qw', 'wq'})
+  end,
+})
 
 --alternate file stuff, figure out if I even need that, or if I am just going
 --to use harpoon
