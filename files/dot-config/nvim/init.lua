@@ -85,25 +85,30 @@ require 'mason'.setup()
 
 vim.lsp.enable({ 'gopls', 'lua_ls', 'elixirls', 'phpactor' })
 
-require 'nvim-treesitter'.install { 'elixir', 'lua', 'go', 'php' }
+-- require 'nvim-treesitter'.install { 'elixir', 'lua', 'go', 'php' }
 
 require 'nvim-treesitter.config'.setup {
     auto_install = true,
-    -- ensure_installed = {
-    --     "eex",
-    --     "elixir",
-    --     "erlang",
-    --     "heex",
-    -- },
+    ensure_installed = {
+        "eex",
+        "elixir",
+        "erlang",
+        "heex",
+        "php",
+        "go",
+    },
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
-    }
+    },
 }
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'elixir', 'php', 'go', 'c', 'lua' },
-    callback = function() vim.treesitter.start() end,
+    callback = function()
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        vim.treesitter.start()
+    end,
 })
 
 -- build blink.cmps fuzzy finder
@@ -218,9 +223,9 @@ map({ 'v', 'n' }, "<leader>dp",
 )
 map({ 'v', 'n', 'x' }, "<leader>df", vim.lsp.buf.format)
 vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    vim.fn.call("CmdAlias", {'qw', 'wq'})
-  end,
+    callback = function()
+        vim.fn.call("CmdAlias", { 'qw', 'wq' })
+    end,
 })
 
 --alternate file stuff, figure out if I even need that, or if I am just going
