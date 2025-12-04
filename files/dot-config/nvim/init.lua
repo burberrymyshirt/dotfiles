@@ -136,6 +136,13 @@ vim.api.nvim_create_autocmd('FileType', {
 --     }
 -- })
 
+-- turn off highlighting when using K lsp command
+vim.api.nvim_create_autocmd('ColorScheme', {
+    callback = function()
+        vim.api.nvim_set_hl(0, 'LspReferenceTarget', {})
+    end,
+})
+
 local orig_float_func = vim.lsp.util.open_floating_preview
 vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
     local buffer_id = vim.api.nvim_get_current_buf()
