@@ -249,3 +249,4 @@ vim.api.nvim_create_autocmd("VimEnter", {
 -- colors
 vim.cmd('colorscheme evening')
 vim.cmd('set background=dark')
+vim.cmd('hi ColorColumn ctermbg=Black guibg=Black')
