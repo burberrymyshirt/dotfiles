@@ -110,10 +110,19 @@ vim.api.nvim_create_autocmd('PackChanged', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
+    group = vim.api.nvim_create_augroup('tree-sitter-trigger', {}),
     pattern = { 'elixir', 'php', 'go', 'c', 'lua' },
     callback = function()
         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         vim.treesitter.start()
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup('php-commentstring', {}),
+    pattern = "php",
+    callback = function()
+        vim.bo.commentstring = "// %s"
     end,
 })
 
