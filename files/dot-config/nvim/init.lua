@@ -222,7 +222,7 @@ map('n', '<leader>sf', '<cmd>Pick files<CR>')
 map('n', '<leader>sg', '<cmd>Pick grep_live<CR>')
 map('n', '<leader>sh', '<cmd>Pick help<CR>')
 
-map('n', '<leader>y', '"+yy')
+map('n', '<leader>yy', '"+yy')
 map({ 'v', 'x' }, '<leader>y', '"+y')
 map('n', '<leader>de', vim.diagnostic.open_float)
 map('n', '<leader>rn', vim.lsp.buf.rename)
