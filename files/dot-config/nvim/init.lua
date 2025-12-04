@@ -103,6 +103,12 @@ require 'nvim-treesitter.config'.setup {
     },
 }
 
+vim.api.nvim_create_autocmd('PackChanged', {
+    callback = function(args)
+        vim.cmd('TSUpdate');
+    end
+})
+
 vim.api.nvim_create_autocmd('FileType', {
     pattern = { 'elixir', 'php', 'go', 'c', 'lua' },
     callback = function()
