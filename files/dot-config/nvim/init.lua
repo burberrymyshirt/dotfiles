@@ -99,7 +99,7 @@ require 'nvim-treesitter.config'.setup {
     },
     highlight = {
         enable = true,
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = true,
     },
 }
 
@@ -247,6 +247,8 @@ map({ 'v', 'n', 'x' }, "<leader>df", vim.lsp.buf.format)
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
         vim.fn.call("CmdAlias", { 'qw', 'wq' })
+        vim.fn.call("CmdAlias", { 'W', 'w' })
+        vim.fn.call("CmdAlias", { 'Q', 'q' })
     end,
 })
 
