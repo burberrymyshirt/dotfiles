@@ -2,6 +2,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.editorconfig = false
+vim.g.netrw_keepdir = 0
 
 -- options
 vim.o.number = true
