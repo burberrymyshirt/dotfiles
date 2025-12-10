@@ -36,6 +36,8 @@ vim.opt.completeopt = { "menu", "menuone", "noinsert" }
 vim.opt.shortmess:append "c"
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
+vim.opt.fixendofline = true
+vim.opt.endofline = true
 
 vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
     group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
