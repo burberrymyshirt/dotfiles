@@ -190,6 +190,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
+local vim_root = nil
+vim.api.nvim_create_autocmd('VimEnter', {
+    group = vim.api.nvim_create_augroup('vimenter.netrwfix', {}),
+    callback = function()
+        vim_root = vim.fn.getcwd();
+    end
+})
+vim.api.nvim_create_autocmd('BufLeave', {
+    pattern = '*',
+    callback = function(event)
+        if vim.bo[event.buf].filetype == 'netrw' then
+            vim.cmd('cd ' .. vim_root)
+        end
+    end,
+})
+
 local function pack_clean()
     local unused_plugins = {}
 
@@ -248,6 +264,7 @@ map({ 'v', 'n' }, "<leader>dp",
 )
 map({ 'v', 'n', 'x' }, "<leader>df", vim.lsp.buf.format)
 vim.api.nvim_create_autocmd("VimEnter", {
+    group = vim.api.nvim_create_augroup('vimenter.keybinds', {}),
     callback = function()
         vim.fn.call("CmdAlias", { 'qw', 'wq' })
         vim.fn.call("CmdAlias", { 'W', 'w' })
