@@ -205,6 +205,13 @@ vim.api.nvim_create_autocmd('BufLeave', {
         end
     end,
 })
+MiniPick.registry.files = function(local_opts)
+    local opts = { source = { cwd = local_opts.cwd } }
+    opts.source.cwd = vim_root
+    local_opts.cwd = nil
+    return MiniPick.builtin.files(local_opts, opts)
+end
+
 
 local function pack_clean()
     local unused_plugins = {}
