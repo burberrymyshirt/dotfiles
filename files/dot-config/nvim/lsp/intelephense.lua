@@ -26,7 +26,7 @@
 --- ```
 
 return {
-  cmd = { 'intelephense', '--stdio' },
+  cmd = { 'intelephense', '--stdio', '--config-extra={\"language_server_completion.trim_leading_dollar\":true}' },
   filetypes = { 'php' },
   root_markers = { '.git', 'composer.json' },
 }
