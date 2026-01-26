@@ -86,7 +86,33 @@ vim.pack.add({
 require 'mini.pick'.setup()
 require 'mason'.setup()
 
-vim.lsp.enable({ 'gopls', 'lua_ls', 'elixirls', 'phpactor' })
+vim.lsp.enable({
+    'gopls',
+    'lua_ls',
+    'elixirls',
+    -- 'phpactor',
+    'intelephense',
+    'eslint',
+    -- 'marksman',
+})
+
+vim.lsp.config('intelephense', {
+    settings = {
+        intelephense = {
+            diagnostics = {
+                enable = true,
+            },
+            files = {
+                maxSize = 1000000,
+            },
+        }
+    },
+    init_options = {
+        globalStoragePath = vim.fn.stdpath('state'),
+        licenceKey = '',
+        clearCache = vim.fn.stdpath("cache"),
+    },
+})
 
 -- require 'nvim-treesitter'.install { 'elixir', 'lua', 'go', 'php' }
 
