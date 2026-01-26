@@ -114,7 +114,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
 
 vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('tree-sitter-trigger', {}),
-    pattern = { 'elixir', 'php', 'go', 'c', 'lua' },
+    pattern = { 'elixir', 'php', 'go', 'c', 'lua', 'blade' },
     callback = function()
         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         vim.treesitter.start()
@@ -197,6 +197,7 @@ vim.api.nvim_create_autocmd('VimEnter', {
         vim_root = vim.fn.getcwd();
     end
 })
+
 vim.api.nvim_create_autocmd('BufLeave', {
     pattern = '*',
     callback = function(event)
@@ -205,13 +206,29 @@ vim.api.nvim_create_autocmd('BufLeave', {
         end
     end,
 })
+
 MiniPick.registry.files = function(local_opts)
     local opts = { source = { cwd = local_opts.cwd } }
     opts.source.cwd = vim_root
+    opts.tool = 'rg'
     local_opts.cwd = nil
     return MiniPick.builtin.files(local_opts, opts)
 end
 
+vim.api.nvim_create_user_command('QFBuffers', function()
+    local items = {}
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.fn.buflisted(buf) == 1 then
+            local name = vim.api.nvim_buf_get_name(buf)
+            if name ~= "" then
+                table.insert(items, { filename = name })
+            end
+        end
+    end
+
+    vim.fn.setqflist(items)
+    vim.cmd("copen")
+end, {})
 
 local function pack_clean()
     local unused_plugins = {}
@@ -240,10 +257,6 @@ map('n', '<leader>pc', pack_clean)
 -- map({'n', 'x', 'v' }, ':', ';')
 map('n', '<leader>pc', pack_clean)
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
-map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 --TODO: add another one like this, to grep entire project for the selected word
 -- with mini.pick or something
@@ -254,19 +267,26 @@ map('n', '<leader>sn', function()
 end, { desc = 'Search the current word' })
 
 map('n', '<leader>sf', '<cmd>Pick files<CR>')
-map('n', '<leader>sg', '<cmd>Pick grep_live<CR>')
+map('n', '<leader>sg', '<cmd>Pick grep_live tool=\'rg\'<CR>')
 map('n', '<leader>sh', '<cmd>Pick help<CR>')
 
 map('n', '<leader>yy', '"+yy')
 map({ 'v', 'x' }, '<leader>y', '"+y')
-map('n', '<leader>de', vim.diagnostic.open_float)
+-- Something in the depths of this open_float call is throwing an exception,
+-- so here we just suppress it. Not the best, but it works.
+map('n', '<leader>de', function() pcall(vim.diagnostic.open_float) end)
 map('n', '<leader>rn', vim.lsp.buf.rename)
-map({ 'v', 'n' }, "<leader>dn",
+map({ 'n', 'i' }, '<C-K>', function() pcall(vim.lsp.buf.signature_help) end)
+map({ 'v', 'n' }, '<leader>dn',
     function() vim.diagnostic.jump({ count = 1 }) end,
     { desc = "Go to next diagnostic" }
 )
-map({ 'v', 'n' }, "<leader>dp",
+map({ 'v', 'n' }, '<leader>dp',
     function() vim.diagnostic.jump({ count = -1 }) end,
+    { desc = "Go to previous diagnostic" }
+)
+map({ 'n' }, '<leader>da',
+    vim.lsp.buf.code_action,
     { desc = "Go to previous diagnostic" }
 )
 map({ 'v', 'n', 'x' }, "<leader>df", vim.lsp.buf.format)
@@ -276,6 +296,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
         vim.fn.call("CmdAlias", { 'qw', 'wq' })
         vim.fn.call("CmdAlias", { 'W', 'w' })
         vim.fn.call("CmdAlias", { 'Q', 'q' })
+        vim.fn.call("CmdAlias", { 'bq', 'QFBuffers' })
     end,
 })
 
