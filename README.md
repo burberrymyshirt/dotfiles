@@ -74,3 +74,10 @@ Then run `<C-Space>I` inside tmux to install all plugins.
 ### Other dependencies
 Other dependencies include asdf version manager, bash-complete-alias and paru. 
 However none of them are hard dependenceis, they will just print erros in the terminal
+
+#### Power management for laptops
+[TLP](https://linrunner.de/tlp/introduction.html)
+[Powertop autotune](https://wiki.archlinux.org/title/Powertop)
+[Archlinux wiki page](https://wiki.archlinux.org/title/Power_management)
+[Wolfgang ASPM script](https://git.notthebe.ee/notthebee/AutoASPM)
+[Backup github for ASPM script](https://github.com/notthebee/AutoASPM?tab=readme-ov-file)
