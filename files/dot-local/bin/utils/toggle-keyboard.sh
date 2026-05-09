@@ -14,7 +14,7 @@ current_layout=$(setxkbmap -print | grep xkb_symbols | awk -F'+' '{print $2}' | 
 if [ "$current_layout" = "dk" ]; then
     setxkbmap -layout us,dk -model pc105 -option terminate:ctrl_alt_bksp,caps:escape
 else
-    setxkbmap -layout dk,us -model pc105 -option terminate:ctrl_alt_bksp,caps:escape  
+    setxkbmap -layout dk,us -model pc105 -option terminate:ctrl_alt_bksp,caps:escape
 fi
 
 # Apply autorepeat settings
