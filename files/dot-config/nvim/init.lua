@@ -32,7 +32,7 @@ vim.o.signcolumn = 'yes'
 vim.o.smartcase = true
 vim.o.updatetime = 500
 vim.o.inccommand = 'split'
-vim.o.scrolloff = 5
+vim.o.scrolloff = 0
 vim.opt.completeopt = { "menu", "menuone", "noinsert" }
 vim.opt.shortmess:append "c"
 vim.cmd('syntax enable')
