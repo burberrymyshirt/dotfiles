@@ -92,6 +92,7 @@ vim.lsp.enable({
     'elixirls',
     -- 'phpactor',
     'intelephense',
+    -- 'phpantom',
     'eslint',
     -- 'marksman',
 })
@@ -151,28 +152,16 @@ vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup('php-commentstring', {}),
     pattern = "php",
     callback = function()
-        vim.bo.commentstring = "// %s"
+        vim.bo.cms = "// %s"
     end,
 })
-
--- build blink.cmps fuzzy finder
--- local blink_path = vim.fn.stdpath('data') .. '/site/pack/core/opt/blink.cmp'
--- if vim.fn.getftype(blink_path .. '/target') == '' then
---     vim.cmd('!cargo +nightly build --manifest-path ' .. blink_path .. '/Cargo.toml --release')
--- end
---
--- require 'blink.cmp'.setup({
---     fuzzy = {
---         implementation = 'prefer_rust'
---     },
---     completion = {
---         documentation = {
---             auto_show = true,
---             auto_show_delay_ms = 0,
---             treesitter_highlighting = true,
---         },
---     }
--- })
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup('blade-commentstring', {}),
+    pattern = "blade",
+    callback = function()
+        vim.bo.cms = "{{-- %s --}}"
+    end,
+})
 
 -- turn off highlighting when using K lsp command
 vim.api.nvim_create_autocmd('ColorScheme', {
