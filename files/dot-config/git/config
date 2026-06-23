@@ -11,3 +11,5 @@
 	defaultBranch = master
 [commit]
 	gpgsign = true
+[diff]
+    tool = nvimdiff
