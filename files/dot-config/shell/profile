@@ -95,3 +95,6 @@ fi
 
 export MANWIDTH=80
 export K9S_SKIN="nord"
+
+export GH_TELEMETRY=false
+export DO_NOT_TRACK=true
