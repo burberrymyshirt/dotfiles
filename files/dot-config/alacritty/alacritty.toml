@@ -13,4 +13,4 @@ bold = { family = "IosevkaNerdFontMono", style = "Bold" }
 italic = { family = "IosevkaNerdFontMono", style = "Italic" }
 
 [window]
-dimensions = {columns = 100, lines = 35}
+dimensions = {columns = 100, lines = 34}
