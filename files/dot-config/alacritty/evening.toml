@@ -4,7 +4,8 @@ foreground = "#ffffff"
 
 [colors.cursor]
 text = "#000000"
-cursor = "#00ff00"
+cursor = "#deffe7"
+# cursor = "#00ff00"
 
 [colors.normal]
 black = "#000000"
