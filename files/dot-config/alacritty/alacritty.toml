@@ -6,11 +6,15 @@ general.import = [
     "~/.config/alacritty/evening.toml"
 ]
 
+
 [font]
 size = 17.75
-normal = { family = "IosevkaNerdFontMono", style = "Regular" }
-bold = { family = "IosevkaNerdFontMono", style = "Bold" }
-italic = { family = "IosevkaNerdFontMono", style = "Italic" }
+# normal = { family = "IosevkaNerdFontMono", style = "Regular" }
+# bold = { family = "IosevkaNerdFontMono", style = "Bold" }
+# italic = { family = "IosevkaNerdFontMono", style = "Italic" }
+normal = { family = "HasklugNerdFont", style = "Regular" }
+bold = { family = "HasklugNerdFont", style = "Bold" }
+italic = { family = "HasklugNerdFont", style = "Italic" }
 
 [window]
 dimensions = {columns = 100, lines = 34}
