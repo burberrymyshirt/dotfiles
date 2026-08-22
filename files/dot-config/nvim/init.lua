@@ -47,6 +47,13 @@ vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
     end,
 })
 
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+    group = vim.api.nvim_create_augroup('whitespace-hl-group', { clear = true }),
+    callback = function()
+        vim.api.nvim_set_hl(0, "Whitespace", {bg = "#333333"})
+    end,
+})
+
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "BufEnter" }, {
     group = vim.api.nvim_create_augroup("ScrollOffEOF", {}),
     callback = function()
@@ -160,6 +167,13 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "blade",
     callback = function()
         vim.bo.cms = "{{-- %s --}}"
+    end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup('elil-commentstring', {}),
+    pattern = "elil",
+    callback = function()
+        vim.bo.cms = "; %s"
     end,
 })
 
@@ -324,3 +338,4 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.cmd('colorscheme evening')
 vim.cmd('set background=dark')
 vim.cmd('hi ColorColumn ctermbg=Black guibg=Black')
+vim.cmd('hi TabLine ctermbg=Black guibg=Black')
