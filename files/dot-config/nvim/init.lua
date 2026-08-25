@@ -316,7 +316,7 @@ map({ 'v', 'n' }, '<leader>dp',
 )
 map({ 'n' }, '<leader>da',
     vim.lsp.buf.code_action,
-    { desc = "Go to previous diagnostic" }
+    { desc = "Show code action" }
 )
 map({ 'v', 'n', 'x' }, "<leader>df", vim.lsp.buf.format)
 vim.api.nvim_create_autocmd("VimEnter", {
