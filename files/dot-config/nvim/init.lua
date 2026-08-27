@@ -169,6 +169,13 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo.cms = "{{-- %s --}}"
     end,
 })
+vim.api.nvim_create_autocmd("BufEnter", {
+    group = vim.api.nvim_create_augroup('elil-filetype', {}),
+    pattern = "*.elil",
+    callback = function()
+        vim.bo.ft = "elil"
+    end,
+})
 vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup('elil-commentstring', {}),
     pattern = "elil",
