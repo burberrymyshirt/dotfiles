@@ -5,6 +5,7 @@ vim.g.editorconfig = false
 vim.g.netrw_keepdir = 0
 
 -- options
+vim.o.tw = 80
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
