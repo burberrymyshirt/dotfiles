@@ -9,12 +9,12 @@ vim.o.tw = 80
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
-vim.o.list = true
+vim.o.listchars = "tab:» ,trail:·,nbsp:␣"
+vim.cmd('set nolist')
 vim.o.swapfile = false
 vim.o.termguicolors = true
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.listchars = "tab:» ,trail:·,nbsp:␣"
 -- vim.o.winborder = 'rounded'
 vim.o.undofile = true
 vim.o.tabstop = 4
