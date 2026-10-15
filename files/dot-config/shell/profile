@@ -93,6 +93,7 @@ then
     xrdb -merge "${HOME}/.Xresources"
 fi
 
+export MANPAGER=less
 export MANWIDTH=80
 export K9S_SKIN="nord"
 
