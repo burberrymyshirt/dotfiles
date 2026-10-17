@@ -95,7 +95,6 @@ fi
 
 export MANPAGER=less
 export MANWIDTH=80
-export MANPAGER=less
 export K9S_SKIN="nord"
 
 export GH_TELEMETRY=false
