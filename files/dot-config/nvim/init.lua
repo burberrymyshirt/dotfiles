@@ -9,12 +9,12 @@ vim.o.tw = 80
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
-vim.o.list = true
+vim.o.listchars = "tab:» ,trail:·,nbsp:␣"
+vim.cmd('set nolist')
 vim.o.swapfile = false
 vim.o.termguicolors = true
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.listchars = "tab:» ,trail:·,nbsp:␣"
 -- vim.o.winborder = 'rounded'
 vim.o.undofile = true
 vim.o.tabstop = 4
@@ -34,6 +34,7 @@ vim.o.smartcase = true
 vim.o.updatetime = 500
 vim.o.inccommand = 'split'
 vim.o.scrolloff = 0
+vim.o.complete='.,w,b,u,t,i,d'
 vim.opt.completeopt = { "menu", "menuone", "noinsert" }
 vim.opt.shortmess:append "c"
 vim.cmd('syntax enable')
