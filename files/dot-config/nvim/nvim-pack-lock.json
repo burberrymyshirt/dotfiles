@@ -1,19 +1,23 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "e116ff9c5c1c2ed6bcdb2e0a6e547099876a8116",
+      "rev": "b72ed05dd452690181837d484984144a64709f17",
       "src": "https://github.com/Saghen/blink.cmp"
     },
     "cmdalias.vim": {
       "rev": "fd3aea59d57f5fed1b835a0e545540c9781c4bb3",
       "src": "https://github.com/vim-scripts/cmdalias.vim"
     },
+    "deepwhite.nvim": {
+      "rev": "ccad56bb5eb7d29258980cfc0a716eb87bcad69e",
+      "src": "https://github.com/Verf/deepwhite.nvim"
+    },
     "mason.nvim": {
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.pick": {
-      "rev": "04e73ab07222508361095bb6e27621b315e6b9f1",
+      "rev": "7cb8fd34bde460986e5e39e9539a9f992ec9772e",
       "src": "https://github.com/echasnovski/mini.pick"
     },
     "nord.nvim": {
@@ -21,11 +25,11 @@
       "src": "https://github.com/shaunsingh/nord.nvim"
     },
     "nvim-lspconfig": {
-      "rev": "a00eb57db2ef4d1ff2d4ef50ead2029cebd09f01",
+      "rev": "45a3a444b710511c39abca3b60bb6e23a21e3de5",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
+      "rev": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     }
