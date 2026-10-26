@@ -83,7 +83,7 @@ vim.filetype.add({
 -- plugins
 vim.pack.add({
     { src = 'https://github.com/shaunsingh/nord.nvim' },
-    { src = 'https://github.com/echasnovski/mini.pick' },
+    { src = 'https://github.com/nvim-mini/mini.pick' },
     -- treesitter switched to calling it main, but left the master as the default on github
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
