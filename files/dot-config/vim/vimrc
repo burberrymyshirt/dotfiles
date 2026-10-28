@@ -38,4 +38,12 @@ import autoload '/usr/share/vim/vim92/autoload/dist/ft.vim'
 import autoload '/usr/share/vim/vim92/autoload/dist/script.vim'
 syntax on
 colorscheme default
+set expandtab
+set smartindent
+set smarttab
+# set termguicolors
+set shiftwidth=4
+set tabstop=4
+set colorcolumn=80
+# hi TabLine ctermbg=Black guibg=Black
 # vim: set ft=vim :
