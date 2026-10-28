@@ -45,5 +45,7 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 set colorcolumn=80
+set number
+set relativenumber
 # hi TabLine ctermbg=Black guibg=Black
 # vim: set ft=vim :
