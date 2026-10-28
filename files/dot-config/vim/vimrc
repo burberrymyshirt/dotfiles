@@ -47,5 +47,7 @@ set tabstop=4
 set colorcolumn=80
 set number
 set relativenumber
+set ttymouse=xterm2
+set mouse=a
 # hi TabLine ctermbg=Black guibg=Black
 # vim: set ft=vim :
