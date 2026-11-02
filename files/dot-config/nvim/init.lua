@@ -212,6 +212,7 @@ vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
         buffer = new_buffer_id,
         desc = 'closes floating lsp doc window'
     })
+    return new_buffer_id, win_id
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -314,7 +315,7 @@ map({ 'v', 'x' }, '<leader>y', '"+y')
 -- so here we just suppress it. Not the best, but it works.
 map('n', '<leader>de', function() pcall(vim.diagnostic.open_float) end)
 map('n', '<leader>rn', vim.lsp.buf.rename)
-map({ 'n', 'i' }, '<C-K>', function() pcall(vim.lsp.buf.signature_help) end)
+map({ 'n', 'i' }, '<C-K>', vim.lsp.buf.signature_help)
 map({ 'v', 'n' }, '<leader>dn',
     function() vim.diagnostic.jump({ count = 1 }) end,
     { desc = "Go to next diagnostic" }
